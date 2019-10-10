@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: S E R N
 subtitle:
-description:
+description: Der alte würfelt nicht
 keywords:
-author: John Doe
-language: en
+author: Amadeus
+language: zh-CN 
 timezone:
 
 # URL
@@ -73,9 +73,30 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: git@github.com:SernRounder/SernRounder.github.io.git
+  branch: master
+
+## 看板娘
+live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: true
+  debug: false
+  model: 
+    use: live2d-widget-model-z16
+  display:
+    position: right
+    width: 50
+    height: 85
+    vOffset: -5
+  mobile:
+    show: false
