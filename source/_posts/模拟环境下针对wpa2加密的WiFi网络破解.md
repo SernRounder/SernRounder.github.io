@@ -3,9 +3,10 @@ title: 模拟环境下对wpa2加密的WiFi网络破解
 date: 2018-12-29 00:09:37
 tags:
 - WiFi
+
 - 无线安全
 - 工具使用
-categories: 练手记录
+categories: 练习记录
 ---
 
 前置知识请参看我之前的文章→[HashCat](https://www.sern.site/2018/12/25/HashCat学习笔记/)、[Airacrack-ng](https://www.sern.site/2018/12/27/Aircrack-ng-渗透测试组件学习笔记/)、[Deauth攻击](https://www.sern.site/2018/12/28/取消验证洪水攻击%EF%BC%88Deauth%EF%BC%89/)、[WPA加密原理](https://www.sern.site/2018/12/28/WPA2加密原理/)
