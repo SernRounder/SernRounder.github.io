@@ -34,6 +34,7 @@ msf> use auxiliary/scanner/portscan/syn //使用syn半开扫描模块
 这个没什么说的，识别出了内网目标后简单的利用
 ```
 ssh -fgCNL out_port:Tar_IP:Tar_port user@out_ip
-```
-就可以把法王out_ip:out_port的流量转发到目标ip的目标端口上，等于暴露了内网的一个端口。
-本地复现的时候这一句要在out_ip的靶机上执行才能正常，不知道原因。
+ ```
+就可以把发往out_ip:out_port的流量转发到目标ip的目标端口上，等于暴露了内网的一个端口。
+# 比赛结束后更新（2019-10-20）
+md，ssh的转发需要知道自己的密码，同时还得在当前的~目录下拥有新建目录的权限，比赛的时候打进去用的是www-data，在www文件夹下没有写入权限的，我傻了都。听学长说可以用meterpreter来端口转发，回来再学习一个
