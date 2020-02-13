@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="靶机环境官网链接：https://www.vulnhub.com/entry/hacker-fest-2019,378/ 靶机下载：https://patron-it.cz/uploads/HF2019-Linux.ova">
+<meta name="keywords" content="VulnHub,渗透测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VulnHub_Hacker Fest 2019">
+<meta property="og:url" content="http://yoursite.com/2019/10/14/vulnHub_HF2019/index.html">
+<meta property="og:site_name" content="SERN">
+<meta property="og:description" content="靶机环境官网链接：https://www.vulnhub.com/entry/hacker-fest-2019,378/ 靶机下载：https://patron-it.cz/uploads/HF2019-Linux.ova">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/10/15/AhxPwUDBeJcjKLq.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/15/ckmHbInylEVzx5j.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/15/19znTPucBSwGU7l.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/15/6GkrBaJpmTRHwZ8.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/15/2YIek85LhKl96dF.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/15/KQH9SJxTNmGb7r3.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/15/8fs1pFKilVPS3YD.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/15/pB6jLz53Y1EK7ht.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/15/Mf9EgGDS8JO2oB4.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/15/peX5G7LwV3ycojC.png">
+<meta property="og:updated_time" content="2020-02-13T03:09:22.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VulnHub_Hacker Fest 2019">
+<meta name="twitter:description" content="靶机环境官网链接：https://www.vulnhub.com/entry/hacker-fest-2019,378/ 靶机下载：https://patron-it.cz/uploads/HF2019-Linux.ova">
+<meta name="twitter:image" content="https://i.loli.net/2019/10/15/AhxPwUDBeJcjKLq.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/14/vulnHub_HF2019/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>VulnHub_Hacker Fest 2019 | SERN</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?810c939467f41f3d42f800dd396fe6b5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SERN</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/14/vulnHub_HF2019/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amadeus">
+      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+      <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SERN">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">VulnHub_Hacker Fest 2019
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-14 19:57:11" itemprop="dateCreated datePublished" datetime="2019-10-14T19:57:11+08:00">2019-10-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-13 11:09:22" itemprop="dateModified" datetime="2020-02-13T11:09:22+08:00">2020-02-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/WriteUP/" itemprop="url" rel="index"><span itemprop="name">WriteUP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/10/14/vulnHub_HF2019/" class="leancloud_visitors" data-flag-title="VulnHub_Hacker Fest 2019">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h1><p>官网链接：<a href="https://www.vulnhub.com/entry/hacker-fest-2019,378/" target="_blank" rel="noopener">https://www.vulnhub.com/entry/hacker-fest-2019,378/</a></p>
+<p>靶机下载：<a href="https://patron-it.cz/uploads/HF2019-Linux.ova" target="_blank" rel="noopener">https://patron-it.cz/uploads/HF2019-Linux.ova</a></p>
+<a id="more"></a>
+<h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><p>masscan扫描内网网段，发现192.168.56.115上线</p>
+<p><img src="https://i.loli.net/2019/10/15/AhxPwUDBeJcjKLq.png" alt=""></p>
+<p>切换nmap，-A自动挡深入扫描</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2019-10-15 20:15 CST</span><br><span class="line">Nmap scan report for 192.168.56.115</span><br><span class="line">Host is up (0.00036s latency).</span><br><span class="line">Not shown: 996 filtered ports</span><br><span class="line">PORT      STATE SERVICE  VERSION</span><br><span class="line">21/tcp    open  ftp      vsftpd 3.0.3</span><br><span class="line">| ftp-anon: Anonymous FTP login allowed (FTP code 230)</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp           420 Nov 30  2017 index.php</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp         19935 Sep 05 08:02 license.txt</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp          7447 Sep 05 08:02 readme.html</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp          6919 Jan 12  2019 wp-activate.php</span><br><span class="line">| drwxrwxr-x    9 ftp      ftp          4096 Sep 05 08:00 wp-admin</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp           369 Nov 30  2017 wp-blog-header.php</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp          2283 Jan 21  2019 wp-comments-post.php</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp          3255 Sep 27 13:17 wp-config.php</span><br><span class="line">| drwxrwxr-x    8 ftp      ftp          4096 Sep 29 07:36 wp-content</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp          3847 Jan 09  2019 wp-cron.php</span><br><span class="line">| drwxrwxr-x   20 ftp      ftp         12288 Sep 05 08:03 wp-includes</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp          2502 Jan 16  2019 wp-links-opml.php</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp          3306 Nov 30  2017 wp-load.php</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp         39551 Jun 10 13:34 wp-login.php</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp          8403 Nov 30  2017 wp-mail.php</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp         18962 Mar 28  2019 wp-settings.php</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp         31085 Jan 16  2019 wp-signup.php</span><br><span class="line">| -rw-rw-r--    1 ftp      ftp          4764 Nov 30  2017 wp-trackback.php</span><br><span class="line">|_-rw-rw-r--    1 ftp      ftp          3068 Aug 17  2018 xmlrpc.php</span><br><span class="line">| ftp-syst:</span><br><span class="line">|   STAT:</span><br><span class="line">| FTP server status:</span><br><span class="line">|      Connected to 192.168.56.1</span><br><span class="line">|      Logged in as ftp</span><br><span class="line">|      TYPE: ASCII</span><br><span class="line">|      No session bandwidth limit</span><br><span class="line">|      Session timeout in seconds is 300</span><br><span class="line">|      Control connection is plain text</span><br><span class="line">|      Data connections will be plain text</span><br><span class="line">|      At session startup, client count was 1</span><br><span class="line">|      vsFTPd 3.0.3 - secure, fast, stable</span><br><span class="line">|_End of status</span><br><span class="line">22/tcp    open  ssh      OpenSSH 7.4p1 Debian 10+deb9u7 (protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 b7:2e:8f:cb:12:e4:e8:cd:93:1e:73:0f:51:ce:48:6c (RSA)</span><br><span class="line">|   256 70:f4:44:eb:a8:55:54:38:2d:6d:75:89:bb:ec:7e:e7 (ECDSA)</span><br><span class="line">|_  256 7c:0e:ab:fe:53:7e:87:22:f8:5a:df:c9:da:7f:90:79 (ED25519)</span><br><span class="line">80/tcp    open  http     Apache httpd 2.4.25 ((Debian))</span><br><span class="line">|_http-generator: WordPress 5.2.3</span><br><span class="line">|_http-server-header: Apache/2.4.25 (Debian)</span><br><span class="line">|_http-title: Tata intranet &amp;#8211; Just another WordPress site</span><br><span class="line">10000/tcp open  ssl/http MiniServ 1.890 (Webmin httpd)</span><br><span class="line">| http-robots.txt: 1 disallowed entry </span><br><span class="line">|_/</span><br><span class="line">|_http-title: Login to Webmin</span><br><span class="line">| ssl-cert: Subject: commonName=*/organizationName=Webmin Webserver on Linux-Debian</span><br><span class="line">| Not valid before: 2019-09-09T13:32:42</span><br><span class="line">|_Not valid after:  2024-09-07T13:32:42</span><br><span class="line">|_ssl-date: TLS randomness does not represent time</span><br><span class="line">Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port</span><br><span class="line">Device type: bridge|general purpose</span><br><span class="line">Running (JUST GUESSING): Oracle Virtualbox (98%), QEMU (93%)</span><br><span class="line">OS CPE: cpe:/o:oracle:virtualbox cpe:/a:qemu:qemu</span><br><span class="line">Aggressive OS guesses: Oracle Virtualbox (98%), QEMU user mode network gateway (93%)</span><br><span class="line">No exact OS matches for host (test conditions non-ideal).</span><br><span class="line">Network Distance: 2 hops</span><br><span class="line">Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">TRACEROUTE (using port 80/tcp)</span><br><span class="line">HOP RTT     ADDRESS</span><br><span class="line">1   0.08 ms 10.0.2.2</span><br><span class="line">2   0.11 ms 192.168.56.115</span><br><span class="line"></span><br><span class="line">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 51.31 seconds</span><br></pre></td></tr></table></figure>
+<h2 id="目标结构"><a href="#目标结构" class="headerlink" title="目标结构"></a>目标结构</h2><ul>
+<li>21<ul>
+<li>FTP</li>
+</ul>
+</li>
+<li>22<ul>
+<li>ssh</li>
+</ul>
+</li>
+<li>80<ul>
+<li>word press</li>
+</ul>
+</li>
+<li>10000<ul>
+<li>webmin<h1 id="攻击面"><a href="#攻击面" class="headerlink" title="攻击面"></a>攻击面</h1><h2 id="21端口的FTP"><a href="#21端口的FTP" class="headerlink" title="21端口的FTP"></a>21端口的FTP</h2>从之前nmap的扫描结果可以看到，目标的FTP允许匿名登录，而且ftp目录同时也是word press的根目录，从而出现了网站源码和网站结构泄露。拖去D盾里扫了一遍，没有给我报告什么高危的命令执行的利用点，不过等级低的倒是有两个，在wp-google-maps。接下来要是其他路线走不通的话可以回来源代码审计。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Connected to 192.168.56.115.</span><br><span class="line">220 (vsFTPd 3.0.3)</span><br><span class="line">Name (192.168.56.115:root): Anonymous</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system type is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line">ftp&gt; passive</span><br><span class="line">Passive mode on.</span><br><span class="line">ftp&gt; ls</span><br><span class="line">227 Entering Passive Mode (192,168,56,115,185,115)</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-rw-r--    1 ftp      ftp           420 Nov 30  2017 index.php</span><br><span class="line">-rw-rw-r--    1 ftp      ftp         19935 Sep 05 08:02 license.txt</span><br><span class="line">-rw-rw-r--    1 ftp      ftp          7447 Sep 05 08:02 readme.html</span><br><span class="line">-rw-rw-r--    1 ftp      ftp          6919 Jan 12  2019 wp-activate.php</span><br><span class="line">drwxrwxr-x    9 ftp      ftp          4096 Sep 05 08:00 wp-admin</span><br><span class="line">-rw-rw-r--    1 ftp      ftp           369 Nov 30  2017 wp-blog-header.php</span><br><span class="line">-rw-rw-r--    1 ftp      ftp          2283 Jan 21  2019 wp-comments-post.php</span><br><span class="line">-rw-rw-r--    1 ftp      ftp          3255 Sep 27 13:17 wp-config.php</span><br><span class="line">drwxrwxr-x    8 ftp      ftp          4096 Sep 29 07:36 wp-content</span><br><span class="line">-rw-rw-r--    1 ftp      ftp          3847 Jan 09  2019 wp-cron.php</span><br><span class="line">drwxrwxr-x   20 ftp      ftp         12288 Sep 05 08:03 wp-includes</span><br><span class="line">-rw-rw-r--    1 ftp      ftp          2502 Jan 16  2019 wp-links-opml.php</span><br><span class="line">-rw-rw-r--    1 ftp      ftp          3306 Nov 30  2017 wp-load.php</span><br><span class="line">-rw-rw-r--    1 ftp      ftp         39551 Jun 10 13:34 wp-login.php</span><br><span class="line">-rw-rw-r--    1 ftp      ftp          8403 Nov 30  2017 wp-mail.php</span><br><span class="line">-rw-rw-r--    1 ftp      ftp         18962 Mar 28  2019 wp-settings.php</span><br><span class="line">-rw-rw-r--    1 ftp      ftp         31085 Jan 16  2019 wp-signup.php</span><br><span class="line">-rw-rw-r--    1 ftp      ftp          4764 Nov 30  2017 wp-trackback.php</span><br><span class="line">-rw-rw-r--    1 ftp      ftp          3068 Aug 17  2018 xmlrpc.php</span><br><span class="line">226 Directory send OK.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2019/10/15/ckmHbInylEVzx5j.png" alt=""></p>
+<h2 id="80端口的服务"><a href="#80端口的服务" class="headerlink" title="80端口的服务"></a>80端口的服务</h2><p>由于目标由wordpress搭建，可以考虑利用wpscan扫描器进行测试。</p>
+<p><img src="https://i.loli.net/2019/10/15/19znTPucBSwGU7l.png" alt=""></p>
+<p>扫描看到其中一个插件的版本过低。同时之前的D盾扫描结果中也报告了这个插件可能有问题，后面重点关注。</p>
+<h2 id="10000端口的webmin"><a href="#10000端口的webmin" class="headerlink" title="10000端口的webmin"></a>10000端口的webmin</h2><p>测试利用最近的webmin后门，失败。</p>
+<p><img src="https://i.loli.net/2019/10/15/6GkrBaJpmTRHwZ8.png" alt=""></p>
+<h1 id="攻击流程"><a href="#攻击流程" class="headerlink" title="攻击流程"></a>攻击流程</h1><p>考虑从80端口开始渗透。<br>从metasploit的漏洞库中找到了word press过期插件对应的漏洞和exp，开始注入。<br><img src="https://i.loli.net/2019/10/15/2YIek85LhKl96dF.png" alt=""><br>设置下参数，exploit后就可以看到爆出来的用户名和密码。<br><img src="https://i.loli.net/2019/10/15/KQH9SJxTNmGb7r3.png" alt=""><br>放到hashcat里跑一下字典就能得到对应的明文，后面的<a href="mailto:webmaster@none.local" target="_blank" rel="noopener">webmaster@none.local</a>是用户名<br><img src="https://i.loli.net/2019/10/15/8fs1pFKilVPS3YD.png" alt=""><br>得到用户名密码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user: webmaster@none.local</span><br><span class="line">passwd: kittykat1</span><br></pre></td></tr></table></figure></p>
+<p>至此已经可以登录word press后台了。</p>
+<p>但是我们先缓一缓，别忘了还有个webmin，尝试使用当前的用户名密码组合登录。<br><img src="https://i.loli.net/2019/10/15/pB6jLz53Y1EK7ht.png" alt=""><br>幸福有点突然，再尝试下ssh<br><img src="https://i.loli.net/2019/10/15/Mf9EgGDS8JO2oB4.png" alt=""><br>真就一个密码走天下<br>当前用户在sudoer里面，直接<code>sudo su</code>提权，变成root<br><img src="https://i.loli.net/2019/10/15/peX5G7LwV3ycojC.png" alt=""></p>
+<h1 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h1><ul>
+<li>熟悉一遍ftp命令的使用</li>
+<li>发现了wpscan这个神器</li>
+<li>以后自己的系统不同部分之间的密码务必差异化。</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/VulnHub/" rel="tag"><i class="fa fa-tag"></i> VulnHub</a>
+          
+            <a href="/tags/渗透测试/" rel="tag"><i class="fa fa-tag"></i> 渗透测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/12/Decrypt-Encryption_Algorithm/" rel="next" title="《加密与解密》第六章 加密算法">
+                <i class="fa fa-chevron-left"></i> 《加密与解密》第六章 加密算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/18/msf-intranet-scanner/" rel="prev" title="msf内网扫描">
+                msf内网扫描 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+    
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg" alt="Amadeus">
+            
+              <p class="site-author-name" itemprop="name">Amadeus</p>
+              <p class="site-description motion-element" itemprop="description">Security Edge Research Net，一个misc选手存放日志的地方</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#靶机环境"><span class="nav-number">1.</span> <span class="nav-text">靶机环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信息搜集"><span class="nav-number">2.</span> <span class="nav-text">信息搜集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标结构"><span class="nav-number">2.1.</span> <span class="nav-text">目标结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#攻击面"><span class="nav-number">3.</span> <span class="nav-text">攻击面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#21端口的FTP"><span class="nav-number">3.1.</span> <span class="nav-text">21端口的FTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#80端口的服务"><span class="nav-number">3.2.</span> <span class="nav-text">80端口的服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10000端口的webmin"><span class="nav-number">3.3.</span> <span class="nav-text">10000端口的webmin</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#攻击流程"><span class="nav-number">4.</span> <span class="nav-text">攻击流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#收获"><span class="nav-number">5.</span> <span class="nav-text">收获</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amadeus</span>
+
+  
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,255,0" opacity="0.5" zindex="-1" count="150" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+
+  
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+   <script>
+        var gitalk = new Gitalk({
+          clientID: '31bd4e3112debc879d07',
+          clientSecret: 'a2e8ff9a5e17fd35e51bb5089941b48016d08810',
+          repo: 'SernRounder.github.io',
+          owner: 'SernRounder',
+          admin: ['SernRounder'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

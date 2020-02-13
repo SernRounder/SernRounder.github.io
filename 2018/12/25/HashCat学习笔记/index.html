@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="简述hashcat是一个极其强大的密码破解工具，在它的官网上有着这么一句话  World’s fastest password cracker  它通过使用GPU来加速计算hash的速度，从而达到快速破解密码的目的。经过测试，在我的电脑的配置情况下使用显卡计算WPA/WPA2密码的速度大约是仅用cpu的8倍~10倍。">
+<meta name="keywords" content="工具使用,CTF,密码学,misc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashCat学习笔记">
+<meta property="og:url" content="http://yoursite.com/2018/12/25/HashCat学习笔记/index.html">
+<meta property="og:site_name" content="SERN">
+<meta property="og:description" content="简述hashcat是一个极其强大的密码破解工具，在它的官网上有着这么一句话  World’s fastest password cracker  它通过使用GPU来加速计算hash的速度，从而达到快速破解密码的目的。经过测试，在我的电脑的配置情况下使用显卡计算WPA/WPA2密码的速度大约是仅用cpu的8倍~10倍。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-02-13T03:09:22.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HashCat学习笔记">
+<meta name="twitter:description" content="简述hashcat是一个极其强大的密码破解工具，在它的官网上有着这么一句话  World’s fastest password cracker  它通过使用GPU来加速计算hash的速度，从而达到快速破解密码的目的。经过测试，在我的电脑的配置情况下使用显卡计算WPA/WPA2密码的速度大约是仅用cpu的8倍~10倍。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/25/HashCat学习笔记/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>HashCat学习笔记 | SERN</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?810c939467f41f3d42f800dd396fe6b5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SERN</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/HashCat学习笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amadeus">
+      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+      <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SERN">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HashCat学习笔记
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-25 21:19:20" itemprop="dateCreated datePublished" datetime="2018-12-25T21:19:20+08:00">2018-12-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-13 11:09:22" itemprop="dateModified" datetime="2020-02-13T11:09:22+08:00">2020-02-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/25/HashCat学习笔记/" class="leancloud_visitors" data-flag-title="HashCat学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>hashcat是一个极其强大的密码破解工具，在它的官网上有着这么一句话</p>
+<blockquote>
+<p>World’s fastest password cracker</p>
+</blockquote>
+<p>它通过使用GPU来加速计算hash的速度，从而达到快速破解密码的目的。经过测试，在我的电脑的配置情况下使用显卡计算WPA/WPA2密码的速度大约是仅用cpu的8倍~10倍。<br><a id="more"></a></p>
+<h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>从官方介绍中了解到hashcat通过利用OpenCL来使用GPU和CPU进行计算。</p>
+<blockquote>
+<p>GPUs are not magic superfast compute devices that are thousands of times faster than CPUs – actually, GPUs are quite slow and dumb compared to CPUs. If they weren’t, we would even use CPUs anymore; CPUs would simply be replaced with GPU architectures. What makes GPUs fast is the fact that there are thousands of slow, dumb cores (shaders.) This means that in order to make full use of a GPU, we have to parallelize the workload so that each of those slow, dumb cores have enough work to do. Password cracking is what is known as an “embarrassingly parallel problem” so it is easy to parallelize, but we still have to structure the attack (both internally and externally) to make it amenable to acceleration.<br>For most hash algorithms (with the exception of very slow hash algorithms), it is not sufficient to simply send the GPU a list of password candidates to hash. Generating candidates on the host computer and transferring them to the GPU for hashing is an order of magnitude slower than just hashing on the host directly, due to PCI-e bandwidth and host-device transfer latency (the PCI-e copy process takes longer than the actual hashing process.) To solve this problem, we need some sort of workload amplifier to ensure there’s enough work available for our GPUs. In the case of password cracking, generating password candidates on the GPU provides precisely the sort of amplification we need. In Hashcat, we accomplish this by splitting attacks up into two loops: a “base loop”, and a “mod(ifier) loop.” The base loop is executed on the host computer and contains the initial password candidates (the “base words.”) The mod loop is executed on the GPU, and generates the final password candidates from the base words on the GPU directly. The mod loop is our amplifier – this is the source of our GPU acceleration. </p>
+</blockquote>
+<p>以上是官方FAQ中的工作方式说明。简单的来说，CPU和GPU都有计算单元，CPU的计算单元功能强大但是数量少，GPU的计算单元非常“dump”但是数量庞大。计算密码这项工作可以被拆分到能够被GPU的计算单元处理，因而可以通过使用GPU的处理单元处理计算密码时产生的大量数据，从而大大提高计算效率。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>hashcat的官网上有详细的安装教程，我是直接下载了编译完成的二进制文件放在window环境中运行。官网上也提到了在Linux和windows下它的表现是相近的。</p>
+<h1 id="基础使用"><a href="#基础使用" class="headerlink" title="基础使用"></a>基础使用</h1><p>强烈推荐阅读<a href="https://hashcat.net/wiki/doku.php?id=frequently_asked_questions#overview" target="_blank" rel="noopener">官方FAQ</a>和<a href="https://hashcat.net/wiki/" target="_blank" rel="noopener">官方wiki</a>，里面有着十分详细的教学。以下内容全部可以在官方FAQ和Wiki中找到，我只是一台复读机。<br>hashcat支持多种编码的解码，比如md5，wpa/wpa2，SHA加密等，具体可在安装后使用–help参数查看。对我来说最重要的作用是可以解wpa加密的数据包。</p>
+<h2 id="可用参数"><a href="#可用参数" class="headerlink" title="可用参数"></a>可用参数</h2><p>一般的命令为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat [选项] 待解密文件 [字典/格式串]</span><br></pre></td></tr></table></figure>
+<p>hashcat提供多种选项，选项和参数都可以通过–help查看，这里仅例举几个接下来要用到的</p>
+<p>-D：<br>指定解码硬件，提供如下参数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>仅使用cpu解码</td>
+</tr>
+<tr>
+<td>2</td>
+<td>仅使用GPU解码</td>
+</tr>
+<tr>
+<td>3</td>
+<td>使用计算卡(不确定，原文：FPGA,DSP,Co-Procsssor)</td>
+</tr>
+</tbody>
+</table>
+<p>-m：<br>指定待解码文件的类型，后跟编码编号，如wpa/wpa2加密对应2500。甚至支持office，rar，zip等文件的密码破解。具体对应的编号表篇幅所限实在是放不下，还请自行查阅官方文档。</p>
+<p>-a：<br>指定攻击模式（Attack-mode），参数如下</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>使用字典攻击</td>
+</tr>
+<tr>
+<td>1</td>
+<td>使用字典中的每项依次进行两两组合攻击</td>
+</tr>
+<tr>
+<td>3</td>
+<td>穷举格式串中每个字符暴力攻击</td>
+</tr>
+<tr>
+<td>6</td>
+<td>混合（hybrid）攻击</td>
+</tr>
+<tr>
+<td>7</td>
+<td>混合（hybrid）攻击，顺序和6相反</td>
+</tr>
+</tbody>
+</table>
+<h2 id="其他特性"><a href="#其他特性" class="headerlink" title="其他特性"></a>其他特性</h2><ul>
+<li>可以在运行的任何阶段暂停，之后可以轻易的恢复</li>
+<li>可以通过格式化字符串生成常用的组合，称之为“mask attack”。知道这功能以后省了我一堆的硬盘空间</li>
+<li>可以随时查看解码进度，另外还有当显卡过热时的自动保护</li>
+<li>在仅用cpu的情况下的计算性能依然高于aircrack-ng套件，可以推测有着十分优秀的优化。</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>我用aircrack-ng跑了一晚上的密码用这玩意40分钟就能跑开……我为什么没有早点发现这个神器……</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具使用/" rel="tag"><i class="fa fa-tag"></i> 工具使用</a>
+          
+            <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
+          
+            <a href="/tags/密码学/" rel="tag"><i class="fa fa-tag"></i> 密码学</a>
+          
+            <a href="/tags/misc/" rel="tag"><i class="fa fa-tag"></i> misc</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/22/基于opencv的图片模板匹配及其简单应用/" rel="next" title="基于opencv的图片模板匹配及其简单应用">
+                <i class="fa fa-chevron-left"></i> 基于opencv的图片模板匹配及其简单应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/27/Aircrack-ng-渗透测试组件学习笔记/" rel="prev" title="Aircrack-ng 渗透测试组件学习笔记">
+                Aircrack-ng 渗透测试组件学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+    
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg" alt="Amadeus">
+            
+              <p class="site-author-name" itemprop="name">Amadeus</p>
+              <p class="site-description motion-element" itemprop="description">Security Edge Research Net，一个misc选手存放日志的地方</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简述"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工作原理"><span class="nav-number">2.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基础使用"><span class="nav-number">4.</span> <span class="nav-text">基础使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可用参数"><span class="nav-number">4.1.</span> <span class="nav-text">可用参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他特性"><span class="nav-number">4.2.</span> <span class="nav-text">其他特性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amadeus</span>
+
+  
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,255,0" opacity="0.5" zindex="-1" count="150" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+
+  
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+   <script>
+        var gitalk = new Gitalk({
+          clientID: '31bd4e3112debc879d07',
+          clientSecret: 'a2e8ff9a5e17fd35e51bb5089941b48016d08810',
+          repo: 'SernRounder.github.io',
+          owner: 'SernRounder',
+          admin: ['SernRounder'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

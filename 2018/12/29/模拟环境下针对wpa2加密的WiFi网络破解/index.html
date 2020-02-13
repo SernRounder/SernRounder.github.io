@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/tit.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前置知识请参看我之前的文章→HashCat、Airacrack-ng、Deauth攻击、WPA加密原理 搭建测试环境注意，在未经同意的情况下接入他人网络或获取他人传输的数据是违法行为，请务必在进行渗透测试前取得授权">
+<meta name="keywords" content="WiFi,无线安全,工具使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟环境下对wpa2加密的WiFi网络破解">
+<meta property="og:url" content="http://yoursite.com/2018/12/29/模拟环境下针对wpa2加密的WiFi网络破解/index.html">
+<meta property="og:site_name" content="SERN">
+<meta property="og:description" content="前置知识请参看我之前的文章→HashCat、Airacrack-ng、Deauth攻击、WPA加密原理 搭建测试环境注意，在未经同意的情况下接入他人网络或获取他人传输的数据是违法行为，请务必在进行渗透测试前取得授权">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2018/12/29/5c264904e9b00.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/29/5c26490e8c5f7.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/29/5c26490d73728.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/29/5c264919f2d16.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/29/5c26491228115.png">
+<meta property="og:image" content="https://i.loli.net/2018/12/29/5c26490fea93b.png">
+<meta property="og:updated_time" content="2020-02-13T03:09:22.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模拟环境下对wpa2加密的WiFi网络破解">
+<meta name="twitter:description" content="前置知识请参看我之前的文章→HashCat、Airacrack-ng、Deauth攻击、WPA加密原理 搭建测试环境注意，在未经同意的情况下接入他人网络或获取他人传输的数据是违法行为，请务必在进行渗透测试前取得授权">
+<meta name="twitter:image" content="https://i.loli.net/2018/12/29/5c264904e9b00.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/29/模拟环境下针对wpa2加密的WiFi网络破解/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>模拟环境下对wpa2加密的WiFi网络破解 | SERN</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?810c939467f41f3d42f800dd396fe6b5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SERN</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/29/模拟环境下针对wpa2加密的WiFi网络破解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amadeus">
+      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+      <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SERN">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">模拟环境下对wpa2加密的WiFi网络破解
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-29 00:09:37" itemprop="dateCreated datePublished" datetime="2018-12-29T00:09:37+08:00">2018-12-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-13 11:09:22" itemprop="dateModified" datetime="2020-02-13T11:09:22+08:00">2020-02-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/练习记录/" itemprop="url" rel="index"><span itemprop="name">练习记录</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/12/29/模拟环境下针对wpa2加密的WiFi网络破解/" class="leancloud_visitors" data-flag-title="模拟环境下对wpa2加密的WiFi网络破解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前置知识请参看我之前的文章→<a href="https://www.sern.site/2018/12/25/HashCat学习笔记/" target="_blank" rel="noopener">HashCat</a>、<a href="https://www.sern.site/2018/12/27/Aircrack-ng-渗透测试组件学习笔记/" target="_blank" rel="noopener">Airacrack-ng</a>、<a href="https://www.sern.site/2018/12/28/取消验证洪水攻击%EF%BC%88Deauth%EF%BC%89/" target="_blank" rel="noopener">Deauth攻击</a>、<a href="https://www.sern.site/2018/12/28/WPA2加密原理/" target="_blank" rel="noopener">WPA加密原理</a></p>
+<h1 id="搭建测试环境"><a href="#搭建测试环境" class="headerlink" title="搭建测试环境"></a>搭建测试环境</h1><p><strong>注意，在未经同意的情况下接入他人网络或获取他人传输的数据是违法行为，请务必在进行渗透测试前取得授权</strong><br><a id="more"></a></p>
+<h2 id="靶机"><a href="#靶机" class="headerlink" title="靶机"></a>靶机</h2><p>由于没有多余的路由器，目标AP（AccessPoint）用手机热点代替，使用的密码为我以前的常用密码，连接的客户端为另一台电脑。</p>
+<h2 id="攻击端及工具"><a href="#攻击端及工具" class="headerlink" title="攻击端及工具"></a>攻击端及工具</h2><p>系统使用Kali Linux，本来打算使用Ubuntu的，但是似乎aircrack-ng在Ubuntu下运行不是特别稳定，所以换到Kali Linux。同时使用Windows下的HashCat作为破解密码（跑包）的工具。</p>
+<h1 id="测试流程"><a href="#测试流程" class="headerlink" title="测试流程"></a>测试流程</h1><p>为了方便，这里用ssh连接远程Linux来完成</p>
+<h2 id="测试目标确定"><a href="#测试目标确定" class="headerlink" title="测试目标确定"></a>测试目标确定</h2><p>首先在Kali中将网卡调到混杂模式，来监听所有范围内的WiFi数据包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airmon-ng start wlan0</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2018/12/29/5c264904e9b00.png" alt=""><br>之后使用airodump-ng来抓取数据包，本来应该先通过没有参数的模式扫描全部信道逐步确定攻击目标，但由于预先把AP设置在了6信道，就只获取信道6的数据包就可以。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airdoump-ng -c 6 -w test wlan0mon</span><br></pre></td></tr></table></figure></p>
+<p>可以看到设置的AP被探测到，同时探测到的还有接入AP的客户端。<br><img src="https://i.loli.net/2018/12/29/5c26490e8c5f7.png" alt=""></p>
+<h2 id="捕获wpa加密的四次握手包"><a href="#捕获wpa加密的四次握手包" class="headerlink" title="捕获wpa加密的四次握手包"></a>捕获wpa加密的四次握手包</h2><p>由于客户端与AP是一直连接的状态，需要通过Deauth攻击将客户端踢下线，迫使它重新发送握手包。这里我们使用aireplay-ng模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng -0 20 -a 4e:49:e3:78:f2:2f  -c 18:1d:ea:e2:b6:e8 wlan0mon</span><br></pre></td></tr></table></figure></p>
+<p>发送20次取消验证帧。<br>可以看到目标很快就进行了再次连接，握手包也成功抓到。<br><img src="https://i.loli.net/2018/12/29/5c26490d73728.png" alt=""></p>
+<h2 id="进行数据包破解"><a href="#进行数据包破解" class="headerlink" title="进行数据包破解"></a>进行数据包破解</h2><p>由于aircrack-ng的破解功能实在是堪忧，这里我们切换到Windows下换HashCat。至于切换到Windows下的原因，HashCat不占cpu，我可以一边打游戏一边等着破解。<br>字典选用我之前网上找的6个多G的弱密码合集<br>抓回来的数据包不能直接用hashcat破解，需要用hashcat_utils，一个官方的转换工具转换成.hccapx格式的数据包。<br><img src="https://i.loli.net/2018/12/29/5c264919f2d16.png" alt=""><br>破解完成，密码get。<br><img src="https://i.loli.net/2018/12/29/5c26491228115.png" alt=""><br>至此，WiFi网络已被攻破，在客户端与AP之间传输的数据对于攻击者来说已经垂手可得。<br>切回Kali中，使用airdecap-ng来解码数据包。</p>
+<h2 id="数据包分析"><a href="#数据包分析" class="headerlink" title="数据包分析"></a>数据包分析</h2><p><img src="https://i.loli.net/2018/12/29/5c26490fea93b.png" alt=""><br>可以看到我之前浏览app和网页的数据一览无余。但是由于目前https加密的普及，泄露的也只有部分网站而已。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>WiFi密码被攻破的危害不止隐私泄露，攻击者接入网络后可以对路由进行攻击，或者使用arp欺骗等手段来伪装为路由。另外如果建立一个与目标AP相同的伪造WiF，再通过Deauth让目标AP离线，那么客户端会自动连接到攻击者的电脑上。通过这些后续攻击手法攻击者可以轻易的的通过中间人攻击来获得客户端发送到网上的密码、用户名等敏感信息，也可以通过窃取cookies来劫持会话。<br>可以通过提高密码复杂度以及定期更换密码来提高WiFi安全度，另外务必关闭路由器的pin功能，之后会继续讲如果通过pin码来破解WiFi密码，那就是另一个博文了。<del>我的肝有点疼</del></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WiFi/" rel="tag"><i class="fa fa-tag"></i> WiFi</a>
+          
+            <a href="/tags/无线安全/" rel="tag"><i class="fa fa-tag"></i> 无线安全</a>
+          
+            <a href="/tags/工具使用/" rel="tag"><i class="fa fa-tag"></i> 工具使用</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/28/WPA2加密原理/" rel="next" title="WPA2加密原理">
+                <i class="fa fa-chevron-left"></i> WPA2加密原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/18/How_can_I_watch_the_video/" rel="prev" title="萌新的misc实践——记一次简单的zip压缩包密码破解">
+                萌新的misc实践——记一次简单的zip压缩包密码破解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div id="gitalk-container">
+    </div>
+    
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg" alt="Amadeus">
+            
+              <p class="site-author-name" itemprop="name">Amadeus</p>
+              <p class="site-description motion-element" itemprop="description">Security Edge Research Net，一个misc选手存放日志的地方</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建测试环境"><span class="nav-number">1.</span> <span class="nav-text">搭建测试环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#靶机"><span class="nav-number">1.1.</span> <span class="nav-text">靶机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#攻击端及工具"><span class="nav-number">1.2.</span> <span class="nav-text">攻击端及工具</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试流程"><span class="nav-number">2.</span> <span class="nav-text">测试流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试目标确定"><span class="nav-number">2.1.</span> <span class="nav-text">测试目标确定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#捕获wpa加密的四次握手包"><span class="nav-number">2.2.</span> <span class="nav-text">捕获wpa加密的四次握手包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进行数据包破解"><span class="nav-number">2.3.</span> <span class="nav-text">进行数据包破解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据包分析"><span class="nav-number">2.4.</span> <span class="nav-text">数据包分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Amadeus</span>
+
+  
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="0,255,0" opacity="0.5" zindex="-1" count="150" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+
+  
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
+
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+   <script>
+        var gitalk = new Gitalk({
+          clientID: '31bd4e3112debc879d07',
+          clientSecret: 'a2e8ff9a5e17fd35e51bb5089941b48016d08810',
+          repo: 'SernRounder.github.io',
+          owner: 'SernRounder',
+          admin: ['SernRounder'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')
+       </script>
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
