@@ -104,16 +104,16 @@
 
 
 
-  <meta name="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+  <meta name="description" content="Der alte würfelt nicht">
 <meta property="og:type" content="website">
-<meta property="og:title" content="SERN">
+<meta property="og:title" content="S E R N">
 <meta property="og:url" content="http://yoursite.com/page/2/index.html">
-<meta property="og:site_name" content="SERN">
-<meta property="og:description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+<meta property="og:site_name" content="S E R N">
+<meta property="og:description" content="Der alte würfelt nicht">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SERN">
-<meta name="twitter:description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+<meta name="twitter:title" content="S E R N">
+<meta name="twitter:description" content="Der alte würfelt nicht">
 
 
 
@@ -130,7 +130,7 @@
   };
 </script>
 
-  <title>SERN</title>
+  <title>S E R N</title>
   
 
 
@@ -142,7 +142,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?810c939467f41f3d42f800dd396fe6b5";
+      hm.src = "https://hm.baidu.com/hm.js?a9e469ebccf853e6822194a1aec9b83d";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -201,7 +201,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">SERN</span>
+        <span class="site-title">S E R N</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -341,774 +341,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/Decrypt-Encryption_Algorithm/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
-      <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SERN">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/12/Decrypt-Encryption_Algorithm/" class="post-title-link" itemprop="http://yoursite.com/page/2/index.html">《加密与解密》第六章 加密算法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-12 16:40:32" itemprop="dateCreated datePublished" datetime="2019-05-12T16:40:32+08:00">2019-05-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-15 22:04:41" itemprop="dateModified" datetime="2019-10-15T22:04:41+08:00">2019-10-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/05/12/Decrypt-Encryption_Algorithm/" class="leancloud_visitors" data-flag-title="《加密与解密》第六章 加密算法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="0x00-写在开头"><a href="#0x00-写在开头" class="headerlink" title="0x00 写在开头"></a>0x00 写在开头</h1><p>我们跳过了第五章 演示版保护技术，主要是因为时间紧任务重，我想先把有用的东西学掉。第五章的内容大概等我六月份从天津回来再慢慢往回补。</p>
-<p>在本章可以学到一些常见的加密算法实现原理以及对算法的攻击。虽然比较简略，但是可堪大用。<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/12/Decrypt-Encryption_Algorithm/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/08/Decrypt-Reverse_Analysis_Tech/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
-      <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SERN">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/08/Decrypt-Reverse_Analysis_Tech/" class="post-title-link" itemprop="http://yoursite.com/page/2/index.html">《加密与解密》第四章 逆向分析技术</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-08 23:19:13" itemprop="dateCreated datePublished" datetime="2019-05-08T23:19:13+08:00">2019-05-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-12 02:13:26" itemprop="dateModified" datetime="2019-05-12T02:13:26+08:00">2019-05-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/05/08/Decrypt-Reverse_Analysis_Tech/" class="leancloud_visitors" data-flag-title="《加密与解密》第四章 逆向分析技术">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="0x00-写在开头"><a href="#0x00-写在开头" class="headerlink" title="0x00 写在开头"></a>0x00 写在开头</h1><p>本文是我学习《加密与解密》（第四版）过程中的笔记与心得。仅用于记录，不保证内容的绝对正确性，但如果能够对后来人有所帮助则是再好不过。</p>
-<p>前面三章讲的都是软件安装和操作，没什么记录的必要。直接从第四章开始，目前已经有了一定的汇编和c/c++语言基础，读起来难度不大。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/08/Decrypt-Reverse_Analysis_Tech/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/How_to_use_shodan_api/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
-      <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SERN">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/15/How_to_use_shodan_api/" class="post-title-link" itemprop="http://yoursite.com/page/2/index.html">使用python在Shodan上进行批量查询</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-15 23:33:33" itemprop="dateCreated datePublished" datetime="2019-03-15T23:33:33+08:00">2019-03-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-12 02:13:26" itemprop="dateModified" datetime="2019-05-12T02:13:26+08:00">2019-05-12</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/03/15/How_to_use_shodan_api/" class="leancloud_visitors" data-flag-title="使用python在Shodan上进行批量查询">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="什么是Shodan"><a href="#什么是Shodan" class="headerlink" title="什么是Shodan"></a>什么是Shodan</h1><p><a href="https://www.shodan.io" target="_blank" rel="noopener">Shodan</a>是一个搜索引擎，和Google类似，但它更像是一个dark♂版的谷歌。<br><img src="https://i.loli.net/2019/03/15/5c8ba7230cb0e.png" alt=""></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/15/How_to_use_shodan_api/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/Recover_from_make_die/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
-      <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SERN">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/11/Recover_from_make_die/" class="post-title-link" itemprop="http://yoursite.com/page/2/index.html">作死后的治疗与康复</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-11 19:33:33" itemprop="dateCreated datePublished" datetime="2019-03-11T19:33:33+08:00">2019-03-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-15 19:56:28" itemprop="dateModified" datetime="2019-10-15T19:56:28+08:00">2019-10-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/练习记录/" itemprop="url" rel="index"><span itemprop="name">练习记录</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/03/11/Recover_from_make_die/" class="leancloud_visitors" data-flag-title="作死后的治疗与康复">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数：</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>选课一时爽，绩点火葬场。人不作死就不会死，没事不能手贱瞎点。还好这次作死救回来了（大概）<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/11/Recover_from_make_die/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-         
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/HackThis Coding Level II WriteUp/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+      <meta itemprop="description" content="Der alte würfelt nicht">
       <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SERN">
+      <meta itemprop="name" content="S E R N">
     </span>
 
     
@@ -1161,7 +403,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-12 02:13:26" itemprop="dateModified" datetime="2019-05-12T02:13:26+08:00">2019-05-12</time>
+                <time title="修改时间：2020-02-17 16:19:07" itemprop="dateModified" datetime="2020-02-17T16:19:07+08:00">2020-02-17</time>
               
             
           </span>
@@ -1187,6 +429,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/04/HackThis Coding Level II WriteUp/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/04/HackThis Coding Level II WriteUp/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1293,12 +545,12 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+      <meta itemprop="description" content="Der alte würfelt nicht">
       <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SERN">
+      <meta itemprop="name" content="S E R N">
     </span>
 
     
@@ -1351,7 +603,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-15 19:55:48" itemprop="dateModified" datetime="2019-10-15T19:55:48+08:00">2019-10-15</time>
+                <time title="修改时间：2020-02-17 16:19:07" itemprop="dateModified" datetime="2020-02-17T16:19:07+08:00">2020-02-17</time>
               
             
           </span>
@@ -1377,6 +629,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/18/How_can_I_watch_the_video/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/18/How_can_I_watch_the_video/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1482,12 +744,12 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+      <meta itemprop="description" content="Der alte würfelt nicht">
       <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SERN">
+      <meta itemprop="name" content="S E R N">
     </span>
 
     
@@ -1540,7 +802,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-15 20:02:21" itemprop="dateModified" datetime="2019-10-15T20:02:21+08:00">2019-10-15</time>
+                <time title="修改时间：2020-02-17 16:19:07" itemprop="dateModified" datetime="2020-02-17T16:19:07+08:00">2020-02-17</time>
               
             
           </span>
@@ -1566,6 +828,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/29/模拟环境下针对wpa2加密的WiFi网络破解/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/29/模拟环境下针对wpa2加密的WiFi网络破解/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1672,12 +944,12 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+      <meta itemprop="description" content="Der alte würfelt nicht">
       <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SERN">
+      <meta itemprop="name" content="S E R N">
     </span>
 
     
@@ -1730,7 +1002,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-12 02:13:26" itemprop="dateModified" datetime="2019-05-12T02:13:26+08:00">2019-05-12</time>
+                <time title="修改时间：2020-02-17 16:19:07" itemprop="dateModified" datetime="2020-02-17T16:19:07+08:00">2020-02-17</time>
               
             
           </span>
@@ -1756,6 +1028,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/28/WPA2加密原理/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/28/WPA2加密原理/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1861,12 +1143,12 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+      <meta itemprop="description" content="Der alte würfelt nicht">
       <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SERN">
+      <meta itemprop="name" content="S E R N">
     </span>
 
     
@@ -1919,7 +1201,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-12 02:13:26" itemprop="dateModified" datetime="2019-05-12T02:13:26+08:00">2019-05-12</time>
+                <time title="修改时间：2020-02-17 16:19:07" itemprop="dateModified" datetime="2020-02-17T16:19:07+08:00">2020-02-17</time>
               
             
           </span>
@@ -1945,6 +1227,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/28/取消验证洪水攻击（Deauth）/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/28/取消验证洪水攻击（Deauth）/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -2050,12 +1342,12 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
+      <meta itemprop="description" content="Der alte würfelt nicht">
       <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SERN">
+      <meta itemprop="name" content="S E R N">
     </span>
 
     
@@ -2108,7 +1400,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-12 02:13:26" itemprop="dateModified" datetime="2019-05-12T02:13:26+08:00">2019-05-12</time>
+                <time title="修改时间：2020-02-17 16:19:07" itemprop="dateModified" datetime="2020-02-17T16:19:07+08:00">2020-02-17</time>
               
             
           </span>
@@ -2134,6 +1426,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/27/Aircrack-ng-渗透测试组件学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/27/Aircrack-ng-渗透测试组件学习笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -2225,11 +1527,413 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/25/HashCat学习笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amadeus">
+      <meta itemprop="description" content="Der alte würfelt nicht">
+      <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="S E R N">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/25/HashCat学习笔记/" class="post-title-link" itemprop="http://yoursite.com/page/2/index.html">HashCat学习笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-25 21:19:20" itemprop="dateCreated datePublished" datetime="2018-12-25T21:19:20+08:00">2018-12-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-17 16:19:07" itemprop="dateModified" datetime="2020-02-17T16:19:07+08:00">2020-02-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/25/HashCat学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/25/HashCat学习笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/25/HashCat学习笔记/" class="leancloud_visitors" data-flag-title="HashCat学习笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>hashcat是一个极其强大的密码破解工具，在它的官网上有着这么一句话</p>
+<blockquote>
+<p>World’s fastest password cracker</p>
+</blockquote>
+<p>它通过使用GPU来加速计算hash的速度，从而达到快速破解密码的目的。经过测试，在我的电脑的配置情况下使用显卡计算WPA/WPA2密码的速度大约是仅用cpu的8倍~10倍。<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/25/HashCat学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/22/基于opencv的图片模板匹配及其简单应用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Amadeus">
+      <meta itemprop="description" content="Der alte würfelt nicht">
+      <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="S E R N">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/22/基于opencv的图片模板匹配及其简单应用/" class="post-title-link" itemprop="http://yoursite.com/page/2/index.html">基于opencv的图片模板匹配及其简单应用</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-22 15:06:59" itemprop="dateCreated datePublished" datetime="2018-12-22T15:06:59+08:00">2018-12-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-17 16:19:07" itemprop="dateModified" datetime="2020-02-17T16:19:07+08:00">2020-02-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/个人项目/" itemprop="url" rel="index"><span itemprop="name">个人项目</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/22/基于opencv的图片模板匹配及其简单应用/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/22/基于opencv的图片模板匹配及其简单应用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/22/基于opencv的图片模板匹配及其简单应用/" class="leancloud_visitors" data-flag-title="基于opencv的图片模板匹配及其简单应用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="基于opencv的图片模板匹配"><a href="#基于opencv的图片模板匹配" class="headerlink" title="基于opencv的图片模板匹配"></a>基于opencv的图片模板匹配</h2>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/12/22/基于opencv的图片模板匹配及其简单应用/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 
@@ -2264,7 +1968,7 @@
               <img class="site-author-image" itemprop="image" src="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg" alt="Amadeus">
             
               <p class="site-author-name" itemprop="name">Amadeus</p>
-              <p class="site-description motion-element" itemprop="description">Security Edge Research Net，一个misc选手存放日志的地方</p>
+              <p class="site-description motion-element" itemprop="description">Der alte würfelt nicht</p>
           </div>
 
           
@@ -2274,7 +1978,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2352,15 +2056,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2548,6 +2244,31 @@
 
 
 
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'gubUXLRB7CMyxP7GeMmOGTl3-gzGzoHsz',
+        appKey: 'j970R6jDnKIVNUmrVhi9VTX0',
+        placeholder: '欢迎留言，我会尽量回复',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
 
 
 
@@ -2582,6 +2303,6 @@
 
   
 
-  
+  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":true,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":50,"height":85,"vOffset":-5},"mobile":{"show":false},"log":false});</script>
 </body>
 </html>
