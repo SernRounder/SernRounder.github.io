@@ -109,10 +109,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="buuoj刷题记录">
 <meta property="og:url" content="http://yoursite.com/2020/02/02/buuoj刷题记录/index.html">
-<meta property="og:site_name" content="S E R N">
+<meta property="og:site_name" content="SERN">
 <meta property="og:description" content="&amp;emsp; 用于记录我在buuoj刷题学到的东西. 不属于wp, 只用来记录知识点.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-17T08:22:36.938Z">
+<meta property="og:updated_time" content="2020-02-12T14:07:46.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="buuoj刷题记录">
 <meta name="twitter:description" content="&amp;emsp; 用于记录我在buuoj刷题学到的东西. 不属于wp, 只用来记录知识点.">
@@ -132,7 +132,7 @@
   };
 </script>
 
-  <title>buuoj刷题记录 | S E R N</title>
+  <title>buuoj刷题记录 | SERN</title>
   
 
 
@@ -144,7 +144,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?a9e469ebccf853e6822194a1aec9b83d";
+      hm.src = "https://hm.baidu.com/hm.js?810c939467f41f3d42f800dd396fe6b5";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -202,7 +202,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">S E R N</span>
+        <span class="site-title">SERN</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -346,12 +346,12 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Der alte würfelt nicht">
+      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
       <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="S E R N">
+      <meta itemprop="name" content="SERN">
     </span>
 
     
@@ -402,7 +402,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-17 16:22:36" itemprop="dateModified" datetime="2020-02-17T16:22:36+08:00">2020-02-17</time>
+                <time title="修改时间：2020-02-12 22:07:46" itemprop="dateModified" datetime="2020-02-12T22:07:46+08:00">2020-02-12</time>
               
             
           </span>
@@ -475,43 +475,45 @@
 
       
         <p>&emsp; 用于记录我在buuoj刷题学到的东西. 不属于wp, 只用来记录知识点.<br><a id="more"></a></p>
-<h1 id="更新中"><a href="#更新中" class="headerlink" title="更新中"></a>更新中</h1><h1 id="0x0C-SWPUCTF-2018-SimplePHP"><a href="#0x0C-SWPUCTF-2018-SimplePHP" class="headerlink" title="0x0C [SWPUCTF 2018]SimplePHP"></a>0x0C [SWPUCTF 2018]SimplePHP</h1><ul>
+<h1 id="更新中"><a href="#更新中" class="headerlink" title="更新中"></a>更新中</h1><h1 id="2020-02-12"><a href="#2020-02-12" class="headerlink" title="2020/02/12"></a>2020/02/12</h1><h2 id="0x0E-极客大挑战-2019-EasySQL"><a href="#0x0E-极客大挑战-2019-EasySQL" class="headerlink" title="0x0E [极客大挑战 2019]EasySQL"></a>0x0E [极客大挑战 2019]EasySQL</h2><ul>
+<li>sql注入, 万能密码<code>admin&#39; or 1=1#</code><h2 id="0x0D-极客大挑战-2019-Havefun"><a href="#0x0D-极客大挑战-2019-Havefun" class="headerlink" title="0x0D [极客大挑战 2019]Havefun"></a>0x0D [极客大挑战 2019]Havefun</h2></li>
+<li>实质上是个misc题, get一个参数获得flag<h1 id="2020-02-10"><a href="#2020-02-10" class="headerlink" title="2020/02/10"></a>2020/02/10</h1><h2 id="0x0C-SWPUCTF-2018-SimplePHP"><a href="#0x0C-SWPUCTF-2018-SimplePHP" class="headerlink" title="0x0C [SWPUCTF 2018]SimplePHP"></a>0x0C [SWPUCTF 2018]SimplePHP</h2></li>
 <li>给了源码, 不过看别人wp似乎是利用任意文件读取泄露源码的.</li>
 <li>审计, 出现<code>file_exists($file)</code>函数, 并且file变量中没有过滤<code>:, /, phar</code>可以利用phar反序列化攻击</li>
 <li>继续审计, 存在<code>C1e4r-&gt;Show-&gt;Test</code>类的pop链, 可以进行任意文件读取.</li>
 <li>本地构造phar文件上传, 再利用file那边的<code>phar://</code>协议进行触发, get flag.</li>
-<li>phar反序列化详细还请参见我写的博客.<h1 id="0x0B-BJDCTF2020-EasySearch"><a href="#0x0B-BJDCTF2020-EasySearch" class="headerlink" title="0x0B [BJDCTF2020]EasySearch"></a>0x0B [BJDCTF2020]EasySearch</h1></li>
+<li>phar反序列化详细还请参见我写的博客.<h2 id="0x0B-BJDCTF2020-EasySearch"><a href="#0x0B-BJDCTF2020-EasySearch" class="headerlink" title="0x0B [BJDCTF2020]EasySearch"></a>0x0B [BJDCTF2020]EasySearch</h2></li>
 <li>vim源码泄露, .swp文件下载源码</li>
 <li>拿到源码后就很简单了, 源码审计下.</li>
 <li>md5校验密码, 没有对用户名做限制, 直接爆破密码.</li>
 <li>用户登录日志存到.shtml文件里</li>
 <li>利用.shtml的执行命令语句执行<code>&lt;!--#exec cmd=&quot;cat ../*&quot;--&gt;</code></li>
-<li>访问.shtml页面(在响应头里), 得到falg<h1 id="0x0A-2020-新春红包题-1"><a href="#0x0A-2020-新春红包题-1" class="headerlink" title="0x0A [2020 新春红包题]1"></a>0x0A [2020 新春红包题]1</h1></li>
+<li>访问.shtml页面(在响应头里), 得到falg<h1 id="bef-2020-02-10"><a href="#bef-2020-02-10" class="headerlink" title="bef 2020/02/10"></a>bef 2020/02/10</h1><h2 id="0x0A-2020-新春红包题-1"><a href="#0x0A-2020-新春红包题-1" class="headerlink" title="0x0A [2020 新春红包题]1"></a>0x0A [2020 新春红包题]1</h2></li>
 <li>反序列化</li>
 <li>wp参见<a href="https://www.sern.site/2020/01/31/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">这里</a></li>
-<li>利用php://fliter进行base64转码绕过文件中的&lt;?php exit();?&gt;<h1 id="0x09-CISCN2019-华北赛区-Day2-Web1-Hack-World"><a href="#0x09-CISCN2019-华北赛区-Day2-Web1-Hack-World" class="headerlink" title="0x09 [CISCN2019 华北赛区 Day2 Web1]Hack World"></a>0x09 [CISCN2019 华北赛区 Day2 Web1]Hack World</h1></li>
+<li>利用php://fliter进行base64转码绕过文件中的&lt;?php exit();?&gt;<h2 id="0x09-CISCN2019-华北赛区-Day2-Web1-Hack-World"><a href="#0x09-CISCN2019-华北赛区-Day2-Web1-Hack-World" class="headerlink" title="0x09 [CISCN2019 华北赛区 Day2 Web1]Hack World"></a>0x09 [CISCN2019 华北赛区 Day2 Web1]Hack World</h2></li>
 <li>使用if进行布尔型盲注</li>
-<li>过滤空格的情况下可以使用%09 %0a %0b %0c %0d等绕过<h1 id="0x08-SUCTF-2019-CheckIn"><a href="#0x08-SUCTF-2019-CheckIn" class="headerlink" title="0x08 [SUCTF 2019]CheckIn"></a>0x08 [SUCTF 2019]CheckIn</h1></li>
+<li>过滤空格的情况下可以使用%09 %0a %0b %0c %0d等绕过<h2 id="0x08-SUCTF-2019-CheckIn"><a href="#0x08-SUCTF-2019-CheckIn" class="headerlink" title="0x08 [SUCTF 2019]CheckIn"></a>0x08 [SUCTF 2019]CheckIn</h2></li>
 <li>上传.user.ini进行文件包含</li>
-<li>传图片马来getshell<h1 id="0x07-RoarCTF-2019-Easy-Calc"><a href="#0x07-RoarCTF-2019-Easy-Calc" class="headerlink" title="0x07 [RoarCTF 2019]Easy Calc"></a>0x07 [RoarCTF 2019]Easy Calc</h1></li>
+<li>传图片马来getshell<h2 id="0x07-RoarCTF-2019-Easy-Calc"><a href="#0x07-RoarCTF-2019-Easy-Calc" class="headerlink" title="0x07 [RoarCTF 2019]Easy Calc"></a>0x07 [RoarCTF 2019]Easy Calc</h2></li>
 <li>构造畸形http包绕过waf</li>
 <li>在参数前加空格绕过waf</li>
-<li>利用chr()将被过滤的字符转换出来<h1 id="0x06-强网杯-2019-高明的黑客"><a href="#0x06-强网杯-2019-高明的黑客" class="headerlink" title="0x06 [强网杯 2019]高明的黑客"></a>0x06 [强网杯 2019]高明的黑客</h1></li>
+<li>利用chr()将被过滤的字符转换出来<h2 id="0x06-强网杯-2019-高明的黑客"><a href="#0x06-强网杯-2019-高明的黑客" class="headerlink" title="0x06 [强网杯 2019]高明的黑客"></a>0x06 [强网杯 2019]高明的黑客</h2></li>
 <li>fuzzy就完事了</li>
-<li>面试的时候被问到这题……<h1 id="0x05-HCTF-2018-admin"><a href="#0x05-HCTF-2018-admin" class="headerlink" title="0x05 [HCTF 2018]admin"></a>0x05 [HCTF 2018]admin</h1></li>
+<li>面试的时候被问到这题……<h2 id="0x05-HCTF-2018-admin"><a href="#0x05-HCTF-2018-admin" class="headerlink" title="0x05 [HCTF 2018]admin"></a>0x05 [HCTF 2018]admin</h2></li>
 <li>存在多种解法</li>
 <li>flask的session加密不严, 并且是保存在本地的, 可以解密篡改</li>
 <li>使用unicode多次解码欺骗, 修改amdin密码</li>
-<li>条件竞争修改密码<h1 id="0x04-SUCTF-2019-EasySQL"><a href="#0x04-SUCTF-2019-EasySQL" class="headerlink" title="0x04 [SUCTF 2019]EasySQL"></a>0x04 [SUCTF 2019]EasySQL</h1></li>
+<li>条件竞争修改密码<h2 id="0x04-SUCTF-2019-EasySQL"><a href="#0x04-SUCTF-2019-EasySQL" class="headerlink" title="0x04 [SUCTF 2019]EasySQL"></a>0x04 [SUCTF 2019]EasySQL</h2></li>
 <li>堆叠注入</li>
 <li>sql_mode 定义了支持的 SQL 语法，以及应该在数据上执行何种确认检查，其中的 PIPES_AS_CONCAT 将 || 视为字符串的连接操作符而非 “或” 运算符</li>
 <li>服务器上应该是类似于将select的数据和flag做了||运算, 返回结果</li>
-<li>将||改为连接后就变成返回select结果+flag.<h1 id="0x03-护网杯-2018-easy-tornado"><a href="#0x03-护网杯-2018-easy-tornado" class="headerlink" title="0x03 [护网杯 2018]easy_tornado"></a>0x03 [护网杯 2018]easy_tornado</h1></li>
+<li>将||改为连接后就变成返回select结果+flag.<h2 id="0x03-护网杯-2018-easy-tornado"><a href="#0x03-护网杯-2018-easy-tornado" class="headerlink" title="0x03 [护网杯 2018]easy_tornado"></a>0x03 [护网杯 2018]easy_tornado</h2></li>
 <li>python tornado模板注入</li>
 <li>render()函数渲染</li>
-<li>利用{ { } }注入模板, 带出secret cookie, 完成文件签名.<h1 id="0x02-强网杯-2019-随便注"><a href="#0x02-强网杯-2019-随便注" class="headerlink" title="0x02 [强网杯 2019]随便注"></a>0x02 [强网杯 2019]随便注</h1></li>
+<li>利用{ { } }注入模板, 带出secret cookie, 完成文件签名.<h2 id="0x02-强网杯-2019-随便注"><a href="#0x02-强网杯-2019-随便注" class="headerlink" title="0x02 [强网杯 2019]随便注"></a>0x02 [强网杯 2019]随便注</h2></li>
 <li>堆叠注入</li>
-<li>使用重命名表名的方法带出falg<h1 id="0x01-HCTF-2018-WarmUp"><a href="#0x01-HCTF-2018-WarmUp" class="headerlink" title="0x01 [HCTF 2018]WarmUp"></a>0x01 [HCTF 2018]WarmUp</h1></li>
+<li>使用重命名表名的方法带出falg<h2 id="0x01-HCTF-2018-WarmUp"><a href="#0x01-HCTF-2018-WarmUp" class="headerlink" title="0x01 [HCTF 2018]WarmUp"></a>0x01 [HCTF 2018]WarmUp</h2></li>
 <li>CVE-2018-12613</li>
 <li>代码审计可以发现漏洞</li>
 <li>考虑过于周全, ?前的字符串只要是白名单中的就能放行.</li>
@@ -632,7 +634,7 @@
               <img class="site-author-image" itemprop="image" src="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg" alt="Amadeus">
             
               <p class="site-author-name" itemprop="name">Amadeus</p>
-              <p class="site-description motion-element" itemprop="description">Der alte würfelt nicht</p>
+              <p class="site-description motion-element" itemprop="description">Security Edge Research Net，一个misc选手存放日志的地方</p>
           </div>
 
           
@@ -763,7 +765,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#更新中"><span class="nav-number">1.</span> <span class="nav-text">更新中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x0C-SWPUCTF-2018-SimplePHP"><span class="nav-number">2.</span> <span class="nav-text">0x0C [SWPUCTF 2018]SimplePHP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x0B-BJDCTF2020-EasySearch"><span class="nav-number">3.</span> <span class="nav-text">0x0B [BJDCTF2020]EasySearch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x0A-2020-新春红包题-1"><span class="nav-number">4.</span> <span class="nav-text">0x0A [2020 新春红包题]1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x09-CISCN2019-华北赛区-Day2-Web1-Hack-World"><span class="nav-number">5.</span> <span class="nav-text">0x09 [CISCN2019 华北赛区 Day2 Web1]Hack World</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x08-SUCTF-2019-CheckIn"><span class="nav-number">6.</span> <span class="nav-text">0x08 [SUCTF 2019]CheckIn</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x07-RoarCTF-2019-Easy-Calc"><span class="nav-number">7.</span> <span class="nav-text">0x07 [RoarCTF 2019]Easy Calc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x06-强网杯-2019-高明的黑客"><span class="nav-number">8.</span> <span class="nav-text">0x06 [强网杯 2019]高明的黑客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x05-HCTF-2018-admin"><span class="nav-number">9.</span> <span class="nav-text">0x05 [HCTF 2018]admin</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x04-SUCTF-2019-EasySQL"><span class="nav-number">10.</span> <span class="nav-text">0x04 [SUCTF 2019]EasySQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-护网杯-2018-easy-tornado"><span class="nav-number">11.</span> <span class="nav-text">0x03 [护网杯 2018]easy_tornado</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-强网杯-2019-随便注"><span class="nav-number">12.</span> <span class="nav-text">0x02 [强网杯 2019]随便注</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-HCTF-2018-WarmUp"><span class="nav-number">13.</span> <span class="nav-text">0x01 [HCTF 2018]WarmUp</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#更新中"><span class="nav-number">1.</span> <span class="nav-text">更新中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-02-12"><span class="nav-number">2.</span> <span class="nav-text">2020/02/12</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0E-极客大挑战-2019-EasySQL"><span class="nav-number">2.1.</span> <span class="nav-text">0x0E [极客大挑战 2019]EasySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0D-极客大挑战-2019-Havefun"><span class="nav-number">2.2.</span> <span class="nav-text">0x0D [极客大挑战 2019]Havefun</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-02-10"><span class="nav-number">3.</span> <span class="nav-text">2020/02/10</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0C-SWPUCTF-2018-SimplePHP"><span class="nav-number">3.1.</span> <span class="nav-text">0x0C [SWPUCTF 2018]SimplePHP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0B-BJDCTF2020-EasySearch"><span class="nav-number">3.2.</span> <span class="nav-text">0x0B [BJDCTF2020]EasySearch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bef-2020-02-10"><span class="nav-number">4.</span> <span class="nav-text">bef 2020/02/10</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x0A-2020-新春红包题-1"><span class="nav-number">4.1.</span> <span class="nav-text">0x0A [2020 新春红包题]1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x09-CISCN2019-华北赛区-Day2-Web1-Hack-World"><span class="nav-number">4.2.</span> <span class="nav-text">0x09 [CISCN2019 华北赛区 Day2 Web1]Hack World</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x08-SUCTF-2019-CheckIn"><span class="nav-number">4.3.</span> <span class="nav-text">0x08 [SUCTF 2019]CheckIn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x07-RoarCTF-2019-Easy-Calc"><span class="nav-number">4.4.</span> <span class="nav-text">0x07 [RoarCTF 2019]Easy Calc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x06-强网杯-2019-高明的黑客"><span class="nav-number">4.5.</span> <span class="nav-text">0x06 [强网杯 2019]高明的黑客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x05-HCTF-2018-admin"><span class="nav-number">4.6.</span> <span class="nav-text">0x05 [HCTF 2018]admin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-SUCTF-2019-EasySQL"><span class="nav-number">4.7.</span> <span class="nav-text">0x04 [SUCTF 2019]EasySQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-护网杯-2018-easy-tornado"><span class="nav-number">4.8.</span> <span class="nav-text">0x03 [护网杯 2018]easy_tornado</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-强网杯-2019-随便注"><span class="nav-number">4.9.</span> <span class="nav-text">0x02 [强网杯 2019]随便注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-HCTF-2018-WarmUp"><span class="nav-number">4.10.</span> <span class="nav-text">0x01 [HCTF 2018]WarmUp</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -965,32 +967,6 @@
 
 
   
-  
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
-
-  
-  
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
-
-  
-  
-  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
-
-   <script>
-        var gitalk = new Gitalk({
-          clientID: '31bd4e3112debc879d07',
-          clientSecret: 'a2e8ff9a5e17fd35e51bb5089941b48016d08810',
-          repo: 'SernRounder.github.io',
-          owner: 'SernRounder',
-          admin: ['SernRounder'],
-          id: md5(location.pathname),
-          distractionFreeMode: 'true'
-        })
-        gitalk.render('gitalk-container')
-       </script>
-
-
-  
 
 
 
@@ -1021,6 +997,6 @@
 
   
 
-  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":true,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":50,"height":85,"vOffset":-5},"mobile":{"show":false},"log":false});</script>
+  
 </body>
 </html>

